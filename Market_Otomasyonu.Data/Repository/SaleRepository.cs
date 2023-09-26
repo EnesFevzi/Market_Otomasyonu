@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Market_Otomasyonu.Data.Repository
 {
-	public class SaleRepository
+	public class SaleRepository : IDisposable
 	{
-		private readonly AppDbContext _context;
+		protected readonly AppDbContext _context;
         public SaleRepository()
         {
             _context = new AppDbContext();
@@ -54,5 +54,9 @@ namespace Market_Otomasyonu.Data.Repository
 			return _context.Set<Sale>().Where(filter).ToList();
 		}
 
+		public void Dispose()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

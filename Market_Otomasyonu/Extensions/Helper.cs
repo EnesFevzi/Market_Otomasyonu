@@ -123,26 +123,29 @@ namespace Market_Otomasyonu.UI.Extensions
 			return bosAlanVar;
 		}
 
-		public static bool AlanlariKontrolEtInroduce(Control.ControlCollection controls)
+		public static bool CheckAreaAddProduct(Control.ControlCollection controls)
 		{
 			bool bosAlanVar = false;
 			foreach (Control control in controls)
 			{
-
-				if (control is NumericUpDown nud && nud.Value == default)
+				if (control is TextBox textBox && string.IsNullOrEmpty(textBox.Text))
 				{
 					bosAlanVar = true;
 					break;
 				}
-
-				if (control is PictureBox pictureBox && pictureBox == null)
+				else if (control is NumericUpDown nud && nud.Value == default)
+				{
+					bosAlanVar = true;
+					break;
+				}
+				else if (control is ComboBox comboBox && comboBox.SelectedIndex == -1)
 				{
 					bosAlanVar = true;
 					break;
 				}
 				else if (control is GroupBox groupBox)
 				{
-					if (AlanlariKontrolEtInroduce(groupBox.Controls))
+					if (CheckAreaAddProduct(groupBox.Controls))
 					{
 						bosAlanVar = true;
 						break;
@@ -166,7 +169,7 @@ namespace Market_Otomasyonu.UI.Extensions
 				}
 				else if (control is GroupBox groupBox)
 				{
-					if (AlanlariKontrolEtInroduce(groupBox.Controls))
+					if (AlanlariKontrolEtLogin(groupBox.Controls))
 					{
 						bosAlanVar = true;
 						break;

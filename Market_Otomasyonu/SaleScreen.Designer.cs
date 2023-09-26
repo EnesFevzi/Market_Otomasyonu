@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			grpUrunEkle = new GroupBox();
-			numericUpDown1 = new NumericUpDown();
+			nmrAdet = new NumericUpDown();
 			label1 = new Label();
 			txtUrunAra = new TextBox();
 			lstArananUrunler = new ListView();
@@ -58,15 +58,16 @@
 			grpOdemeYontemi = new GroupBox();
 			rdbKrediKarti = new RadioButton();
 			rdbNakit = new RadioButton();
+			btnSiparisSil = new Button();
 			grpUrunEkle.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+			((System.ComponentModel.ISupportInitialize)nmrAdet).BeginInit();
 			grpFiyatAlani.SuspendLayout();
 			grpOdemeYontemi.SuspendLayout();
 			SuspendLayout();
 			// 
 			// grpUrunEkle
 			// 
-			grpUrunEkle.Controls.Add(numericUpDown1);
+			grpUrunEkle.Controls.Add(nmrAdet);
 			grpUrunEkle.Controls.Add(label1);
 			grpUrunEkle.Location = new Point(422, 37);
 			grpUrunEkle.Name = "grpUrunEkle";
@@ -75,12 +76,12 @@
 			grpUrunEkle.TabStop = false;
 			grpUrunEkle.Text = "Ürün Ekleme Sayfası";
 			// 
-			// numericUpDown1
+			// nmrAdet
 			// 
-			numericUpDown1.Location = new Point(61, 31);
-			numericUpDown1.Name = "numericUpDown1";
-			numericUpDown1.Size = new Size(120, 23);
-			numericUpDown1.TabIndex = 1;
+			nmrAdet.Location = new Point(61, 31);
+			nmrAdet.Name = "nmrAdet";
+			nmrAdet.Size = new Size(120, 23);
+			nmrAdet.TabIndex = 1;
 			// 
 			// label1
 			// 
@@ -98,6 +99,7 @@
 			txtUrunAra.Name = "txtUrunAra";
 			txtUrunAra.Size = new Size(259, 23);
 			txtUrunAra.TabIndex = 1;
+			txtUrunAra.TextChanged += txtUrunAra_TextChanged;
 			// 
 			// lstArananUrunler
 			// 
@@ -141,6 +143,7 @@
 			btnSiparisiTamamla.TabIndex = 9;
 			btnSiparisiTamamla.Text = "Siparişi Tamamla";
 			btnSiparisiTamamla.UseVisualStyleBackColor = true;
+			btnSiparisiTamamla.Click += btnSiparisiTamamla_Click;
 			// 
 			// label6
 			// 
@@ -266,6 +269,7 @@
 			btnSiparisEkle.TabIndex = 9;
 			btnSiparisEkle.Text = "Siparis Ekle";
 			btnSiparisEkle.UseVisualStyleBackColor = true;
+			btnSiparisEkle.Click += btnSiparisEkle_Click;
 			// 
 			// grpOdemeYontemi
 			// 
@@ -300,6 +304,16 @@
 			rdbNakit.Text = "Nakit";
 			rdbNakit.UseVisualStyleBackColor = true;
 			// 
+			// btnSiparisSil
+			// 
+			btnSiparisSil.Location = new Point(727, 175);
+			btnSiparisSil.Name = "btnSiparisSil";
+			btnSiparisSil.Size = new Size(98, 43);
+			btnSiparisSil.TabIndex = 9;
+			btnSiparisSil.Text = "Siparisi Kaldır";
+			btnSiparisSil.UseVisualStyleBackColor = true;
+			btnSiparisSil.Click += btnSiparisSil_Click;
+			// 
 			// SaleScreen
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -311,6 +325,7 @@
 			Controls.Add(label6);
 			Controls.Add(grpUrunEkle);
 			Controls.Add(lstArananUrunler);
+			Controls.Add(btnSiparisSil);
 			Controls.Add(btnSiparisEkle);
 			Controls.Add(btnSiparisiTamamla);
 			Controls.Add(txtUrunAra);
@@ -318,7 +333,7 @@
 			Text = "SaleScreen";
 			grpUrunEkle.ResumeLayout(false);
 			grpUrunEkle.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+			((System.ComponentModel.ISupportInitialize)nmrAdet).EndInit();
 			grpFiyatAlani.ResumeLayout(false);
 			grpFiyatAlani.PerformLayout();
 			grpOdemeYontemi.ResumeLayout(false);
@@ -364,10 +379,11 @@
 		private Label label8;
 		private Label lblToplamFiyat;
 		private Label lblToplamSatisAdedi;
-		private NumericUpDown numericUpDown1;
+		private NumericUpDown nmrAdet;
 		private Button btnSiparisEkle;
 		private GroupBox grpOdemeYontemi;
 		private RadioButton rdbKrediKarti;
 		private RadioButton rdbNakit;
+		private Button btnSiparisSil;
 	}
 }

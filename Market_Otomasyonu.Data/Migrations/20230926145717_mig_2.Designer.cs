@@ -4,6 +4,7 @@ using Market_Otomasyonu.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market_Otomasyonu.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230926145717_mig_2")]
+    partial class mig_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,7 +184,7 @@ namespace Market_Otomasyonu.Data.Migrations
                             ProductID = 1,
                             Brand = "Milka",
                             CategoryID = 1,
-                            ExpirationDate = new DateTime(2023, 9, 26, 18, 15, 46, 479, DateTimeKind.Local).AddTicks(9143),
+                            ExpirationDate = new DateTime(2023, 9, 26, 17, 57, 17, 90, DateTimeKind.Local).AddTicks(3545),
                             IsContinued = true,
                             Name = "Çikolata",
                             PurchasePrice = 7m,
@@ -198,7 +200,7 @@ namespace Market_Otomasyonu.Data.Migrations
                             ProductID = 2,
                             Brand = "Eti",
                             CategoryID = 1,
-                            ExpirationDate = new DateTime(2023, 9, 26, 18, 15, 46, 479, DateTimeKind.Local).AddTicks(9155),
+                            ExpirationDate = new DateTime(2023, 9, 26, 17, 57, 17, 90, DateTimeKind.Local).AddTicks(3557),
                             IsContinued = true,
                             Name = "Çikolatalı Gofret",
                             PurchasePrice = 8m,
@@ -214,7 +216,7 @@ namespace Market_Otomasyonu.Data.Migrations
                             ProductID = 3,
                             Brand = "Ülker",
                             CategoryID = 1,
-                            ExpirationDate = new DateTime(2023, 9, 26, 18, 15, 46, 479, DateTimeKind.Local).AddTicks(9157),
+                            ExpirationDate = new DateTime(2023, 9, 26, 17, 57, 17, 90, DateTimeKind.Local).AddTicks(3559),
                             IsContinued = true,
                             Name = "Çikolatalı Gofret",
                             PurchasePrice = 8m,
@@ -234,9 +236,6 @@ namespace Market_Otomasyonu.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleID"), 1L, 1);
-
-                    b.Property<int>("FaturaID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

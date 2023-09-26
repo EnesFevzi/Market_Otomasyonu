@@ -22,6 +22,7 @@ namespace Market_Otomasyonu.Entity.Entities
 		public decimal ProfitPrice { get; set; }
 		public PaymentMethod PaymentMethod { get; set; }
 		public DateTime SaleDate { get; set; }
+		public int FaturaID { get; set; }
 
 		//Navigation Prop
 		public virtual ICollection<Product> Products { get; set; }

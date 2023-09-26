@@ -18,5 +18,10 @@ namespace Market_Otomasyonu.Entity.Entities
 
         //Navigation Prop
         public virtual ICollection<Product> Products { get; set;}
-    }
+
+		public override string ToString()
+		{
+			return $"{Name}";
+		}
+	}
 }

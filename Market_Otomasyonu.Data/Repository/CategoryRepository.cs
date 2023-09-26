@@ -54,5 +54,9 @@ namespace Market_Otomasyonu.Data.Repository
 		{
 			return _context.Set<Category>().Where(filter).ToList();
 		}
+		public Category GetByName(string categoryName)
+		{
+			return _context.Set<Category>().FirstOrDefault(c => c.Name == categoryName);
+		}
 	}
 }
