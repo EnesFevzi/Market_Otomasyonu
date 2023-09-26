@@ -117,12 +117,12 @@
 			// columnHeader1
 			// 
 			columnHeader1.Text = "ID";
-			columnHeader1.Width = 100;
+			columnHeader1.Width = 50;
 			// 
 			// columnHeader2
 			// 
 			columnHeader2.Text = "Kategori Adı";
-			columnHeader2.Width = 100;
+			columnHeader2.Width = 250;
 			// 
 			// AddCategory
 			// 
