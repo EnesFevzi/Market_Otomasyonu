@@ -13,5 +13,7 @@ namespace Market_Otomasyonu.Business.Abstract
 		Category GetByFilterCategory(Expression<Func<Category, bool>> filter);
 		List<Category> GetByFilterListCategory(Expression<Func<Category, bool>> filter);
 
+		bool IsCategoryExist(string name);
+
 	}
 }

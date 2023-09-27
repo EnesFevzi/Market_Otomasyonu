@@ -58,5 +58,10 @@ namespace Market_Otomasyonu.Data.Repository
 		{
 			return _context.Set<Category>().FirstOrDefault(c => c.Name == categoryName);
 		}
+		public bool IsCategoryExist(string name)
+		{
+			var category = _context.Categories.Any(x => x.Name == name);
+			return category;
+		}
 	}
 }

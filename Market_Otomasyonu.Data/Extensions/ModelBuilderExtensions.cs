@@ -13,6 +13,8 @@ namespace Market_Otomasyonu.Data.Extensions
 
 		public static void SeedData(this ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<AppRole>().HasData(new AppRole() { RoleID = 1, RoleName = "Admin" });
+			modelBuilder.Entity<AppRole>().HasData(new AppRole() { RoleID = 2, RoleName = "Worker" });
 			modelBuilder.Entity<AppUser>()
 				.HasData(
 				new AppUser()
@@ -22,7 +24,37 @@ namespace Market_Otomasyonu.Data.Extensions
 					Surname = "Fevzi",
 					Username = "enesfevzi",
 					Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
-					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7"
+					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+					Gender = "Erkek",
+					RoleID = 1,
+				}
+				);
+			modelBuilder.Entity<AppUser>()
+				.HasData(
+				new AppUser()
+				{
+					UserID = 2,
+					Name = "İhsan",
+					Surname = "Tapan",
+					Username = "ihsantapan",
+					Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+					Gender = "Erkek",
+					RoleID = 2,
+				}
+				);
+			modelBuilder.Entity<AppUser>()
+				.HasData(
+				new AppUser()
+				{
+					UserID = 3,
+					Name = "Ebru",
+					Surname = "Çevik",
+					Username = "ebrucevik",
+					Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+					Gender = "Erkek",
+					RoleID = 2,
 				}
 				);
 			modelBuilder.Entity<Category>().HasData(

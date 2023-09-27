@@ -46,5 +46,10 @@ namespace Market_Otomasyonu.Business.Concrete
 		{
 			return _categoryRepository.GetByFilterList(filter);
 		}
+
+		public bool IsCategoryExist(string name)
+		{
+			return _categoryRepository.IsCategoryExist(name);
+		}
 	}
 }

@@ -21,6 +21,15 @@ namespace Market_Otomasyonu.Data.Repository
 			_context.Sales.Add(sale);
 			_context.SaveChanges();
 		}
+		public void Add2(List<Sale> sales)
+		{
+			foreach (var sale in sales)
+			{
+				_context.Sales.Add(sale);
+			}
+
+			_context.SaveChanges();
+		}
 
 		public void Update(Sale sale) 
 		{ 

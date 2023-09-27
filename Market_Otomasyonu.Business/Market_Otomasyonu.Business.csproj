@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Market_Otomasyonu.Data\Market_Otomasyonu.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
+  </ItemGroup>
+
 </Project>

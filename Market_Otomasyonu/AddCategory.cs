@@ -28,20 +28,28 @@ namespace Market_Otomasyonu.UI
 		}
 		private void btnKaydet_Click(object sender, EventArgs e)
 		{
-			if (Helper.AlanlariKontrolEt(grpKategoriEkle.Controls))
+			if (_categoryService.IsCategoryExist(txtKategoriAdi.Text))
 			{
-				MessageBox.Show("Lütfen tüm alanları doldurun.");
-				return;
+				MessageBox.Show("Böyle bir kategori mevcut");
 			}
-
-			var category = new Category()
+			else
 			{
-				Name = txtKategoriAdi.Text,
-			};
-			_categoryService.AddCategory(category);
-			MessageBox.Show("Kaydetme İşlemi Başarılı");
-			UrunleriDoldur(_categoryService.GetAllCategory());
-			Helper.Temizle(grpKategoriEkle.Controls);
+				if (Helper.AlanlariKontrolEt(grpKategoriEkle.Controls))
+				{
+					MessageBox.Show("Lütfen tüm alanları doldurun.");
+					return;
+				}
+
+				var category = new Category()
+				{
+					Name = txtKategoriAdi.Text,
+				};
+				_categoryService.AddCategory(category);
+				MessageBox.Show("Kaydetme İşlemi Başarılı");
+				UrunleriDoldur(_categoryService.GetAllCategory());
+				Helper.Temizle(grpKategoriEkle.Controls);
+			}
+			
 		}
 		private void UrunleriDoldur(List<Category> categories)
 		{

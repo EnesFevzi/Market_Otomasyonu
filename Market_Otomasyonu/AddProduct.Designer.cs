@@ -185,6 +185,7 @@
 			btnGuncelle.TabIndex = 4;
 			btnGuncelle.Text = "Güncelle";
 			btnGuncelle.UseVisualStyleBackColor = false;
+			btnGuncelle.Click += btnGuncelle_Click;
 			// 
 			// btnSil
 			// 
@@ -196,6 +197,7 @@
 			btnSil.TabIndex = 4;
 			btnSil.Text = "Sil";
 			btnSil.UseVisualStyleBackColor = false;
+			btnSil.Click += btnSil_Click;
 			// 
 			// lstUrunler
 			// 
@@ -208,6 +210,7 @@
 			lstUrunler.TabIndex = 5;
 			lstUrunler.UseCompatibleStateImageBehavior = false;
 			lstUrunler.View = View.Details;
+			lstUrunler.SelectedIndexChanged += lstUrunler_SelectedIndexChanged;
 			// 
 			// columnHeader1
 			// 

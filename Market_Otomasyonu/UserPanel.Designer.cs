@@ -32,13 +32,14 @@
 			btnUrunEkle = new Button();
 			btnKategoriEkle = new Button();
 			btnSatisEkrani = new Button();
+			btnKullaniciPaneli = new Button();
 			SuspendLayout();
 			// 
 			// btnRapor
 			// 
 			btnRapor.BackColor = Color.Red;
 			btnRapor.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			btnRapor.Location = new Point(95, 48);
+			btnRapor.Location = new Point(85, 30);
 			btnRapor.Name = "btnRapor";
 			btnRapor.Size = new Size(191, 75);
 			btnRapor.TabIndex = 0;
@@ -50,7 +51,7 @@
 			// 
 			btnUrunEkle.BackColor = Color.Red;
 			btnUrunEkle.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			btnUrunEkle.Location = new Point(95, 147);
+			btnUrunEkle.Location = new Point(85, 129);
 			btnUrunEkle.Name = "btnUrunEkle";
 			btnUrunEkle.Size = new Size(191, 75);
 			btnUrunEkle.TabIndex = 0;
@@ -62,7 +63,7 @@
 			// 
 			btnKategoriEkle.BackColor = Color.Red;
 			btnKategoriEkle.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			btnKategoriEkle.Location = new Point(95, 246);
+			btnKategoriEkle.Location = new Point(85, 228);
 			btnKategoriEkle.Name = "btnKategoriEkle";
 			btnKategoriEkle.Size = new Size(191, 75);
 			btnKategoriEkle.TabIndex = 0;
@@ -74,7 +75,7 @@
 			// 
 			btnSatisEkrani.BackColor = Color.Chartreuse;
 			btnSatisEkrani.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			btnSatisEkrani.Location = new Point(95, 347);
+			btnSatisEkrani.Location = new Point(85, 329);
 			btnSatisEkrani.Name = "btnSatisEkrani";
 			btnSatisEkrani.Size = new Size(191, 75);
 			btnSatisEkrani.TabIndex = 0;
@@ -82,17 +83,31 @@
 			btnSatisEkrani.UseVisualStyleBackColor = false;
 			btnSatisEkrani.Click += btnSatisEkrani_Click;
 			// 
+			// btnKullaniciPaneli
+			// 
+			btnKullaniciPaneli.BackColor = Color.Orange;
+			btnKullaniciPaneli.Font = new Font("Calibri", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+			btnKullaniciPaneli.Location = new Point(85, 426);
+			btnKullaniciPaneli.Name = "btnKullaniciPaneli";
+			btnKullaniciPaneli.Size = new Size(191, 75);
+			btnKullaniciPaneli.TabIndex = 0;
+			btnKullaniciPaneli.Text = "KULLANICI PANELİ";
+			btnKullaniciPaneli.UseVisualStyleBackColor = false;
+			btnKullaniciPaneli.Click += btnKullaniciPaneli_Click;
+			// 
 			// UserPanel
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(373, 478);
+			ClientSize = new Size(373, 521);
 			Controls.Add(btnSatisEkrani);
 			Controls.Add(btnKategoriEkle);
 			Controls.Add(btnUrunEkle);
+			Controls.Add(btnKullaniciPaneli);
 			Controls.Add(btnRapor);
 			Name = "UserPanel";
 			Text = "UserPanel";
+			Load += UserPanel_Load;
 			ResumeLayout(false);
 		}
 
@@ -102,5 +117,6 @@
 		private Button btnUrunEkle;
 		private Button btnKategoriEkle;
 		private Button btnSatisEkrani;
+		private Button btnKullaniciPaneli;
 	}
 }

@@ -21,7 +21,7 @@ namespace Market_Otomasyonu
 			AddUnitsToCombobox();
 			GetAllProducts();
 		}
-		
+
 
 		private void btnKaydet_Click(object sender, EventArgs e)
 		{
@@ -74,7 +74,6 @@ namespace Market_Otomasyonu
 			{
 				ListViewItem lv = new ListViewItem(item.ProductID.ToString());
 				lv.SubItems.Add(item.Name);
-
 				Category category = _categoryRepository.GetByID(item.CategoryID);
 				if (category != null)
 				{
@@ -111,7 +110,74 @@ namespace Market_Otomasyonu
 				cmbBirim.Items.Add(item);
 			}
 		}
+		Product selectedProduct;
+		private void lstUrunler_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (lstUrunler.SelectedItems.Count > 0)
+			{
+				selectedProduct = (Product)lstUrunler.SelectedItems[0].Tag; ;
+				Category category = _categoryRepository.GetByID(selectedProduct.CategoryID);
+				txtUrunAdi.Text = selectedProduct.Name;
+				cmbKategori.SelectedItem = category;
+				txtMarka.Text = selectedProduct.Brand;
+				cmbBirim.SelectedItem = selectedProduct.Unit;
+				nmrAlisFiyati.Value = selectedProduct.SalePrice;
+				nmrStokAdedi.Value = selectedProduct.Stock;
+				nmrSatisFiyati.Value = selectedProduct.PurchasePrice;
+				nmrVergiOrani.Value = selectedProduct.TaxRatio;
+				nmrPakettekiUrunSayisi.Value = selectedProduct.Quantity;
+				dtSonKullanmaTarihi.Value = selectedProduct.ExpirationDate;
+			}
+		}
+		private void btnGuncelle_Click(object sender, EventArgs e)
+		{
+			if (lstUrunler.SelectedItems.Count > 0)
+			{
+				selectedProduct = (Product)lstUrunler.SelectedItems[0].Tag;
 
+				selectedProduct.Name = txtUrunAdi.Text;
 
+				var category = (Category)cmbKategori.SelectedItem;
+				selectedProduct.CategoryID = category.CategoryID;
+
+				selectedProduct.Unit = (Unit)cmbBirim.SelectedItem;
+				selectedProduct.SalePrice = nmrAlisFiyati.Value;
+				selectedProduct.Brand =txtMarka.Text;
+				selectedProduct.Stock = (int)nmrStokAdedi.Value;
+				selectedProduct.PurchasePrice = nmrSatisFiyati.Value;
+				selectedProduct.TaxRatio = nmrVergiOrani.Value;
+				selectedProduct.Quantity = nmrPakettekiUrunSayisi.Value;
+				selectedProduct.ExpirationDate = dtSonKullanmaTarihi.Value;
+
+				_productRepository.Update(selectedProduct);
+				MessageBox.Show("Ýþlem baþarýlý!");
+				GetAllProducts();
+				Helper.Temizle(grpUrunEkle.Controls);
+			}
+			else
+			{
+				MessageBox.Show("Lütfen bir ürün seçiniz!");
+			}
+		}
+
+		private void btnSil_Click(object sender, EventArgs e)
+		{
+			if (lstUrunler.SelectedItems.Count > 0)
+			{
+
+				if (selectedProduct != null)
+				{
+					_productRepository.Delete(selectedProduct);
+					MessageBox.Show("Silme iþlemi Baþarýyla Gerçekleþti");
+					GetAllProducts();
+				}
+				else
+				{
+					MessageBox.Show("Ýlgili Ürün Bulunamadý");
+				}
+			}
+		}
+
+		
 	}
 }

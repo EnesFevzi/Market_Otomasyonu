@@ -28,14 +28,6 @@ namespace Market_Otomasyonu.UI.Extensions
 				{
 					comboBox.SelectedIndex = 0;
 				}
-				else if (control is Label label && label.Name == "lblGüvenlikSeviyesi")
-				{
-					label.Text = string.Empty;
-				}
-				else if (control is Label label2 && label2.Name == "lblSifreEslesmeDurumu")
-				{
-					label2.Text = string.Empty;
-				}
 				else if (control is CheckBox checkBox)
 				{
 					checkBox.Checked = false;
@@ -134,6 +126,34 @@ namespace Market_Otomasyonu.UI.Extensions
 					break;
 				}
 				else if (control is NumericUpDown nud && nud.Value == default)
+				{
+					bosAlanVar = true;
+					break;
+				}
+				else if (control is ComboBox comboBox && comboBox.SelectedIndex == -1)
+				{
+					bosAlanVar = true;
+					break;
+				}
+				else if (control is GroupBox groupBox)
+				{
+					if (CheckAreaAddProduct(groupBox.Controls))
+					{
+						bosAlanVar = true;
+						break;
+					}
+				}
+
+
+			}
+			return bosAlanVar;
+		}
+		public static bool CheckAreaAddUser(Control.ControlCollection controls)
+		{
+			bool bosAlanVar = false;
+			foreach (Control control in controls)
+			{
+				if (control is TextBox textBox && string.IsNullOrEmpty(textBox.Text))
 				{
 					bosAlanVar = true;
 					break;

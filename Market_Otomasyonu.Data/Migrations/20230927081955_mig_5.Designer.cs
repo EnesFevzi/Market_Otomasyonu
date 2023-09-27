@@ -4,6 +4,7 @@ using Market_Otomasyonu.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Market_Otomasyonu.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230927081955_mig_5")]
+    partial class mig_5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,9 +72,8 @@ namespace Market_Otomasyonu.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsWorking")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsWorking")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -107,9 +108,9 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             UserID = 1,
                             ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
-                            CreatedDate = new DateTime(2023, 9, 27, 13, 0, 58, 695, DateTimeKind.Local).AddTicks(5749),
+                            CreatedDate = new DateTime(2023, 9, 27, 11, 19, 55, 199, DateTimeKind.Local).AddTicks(7434),
                             Gender = "Erkek",
-                            IsWorking = "Çalışıyor",
+                            IsWorking = true,
                             Name = "Enes",
                             Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
                             RoleID = 1,
@@ -234,7 +235,7 @@ namespace Market_Otomasyonu.Data.Migrations
                             ProductID = 1,
                             Brand = "Milka",
                             CategoryID = 1,
-                            ExpirationDate = new DateTime(2023, 9, 27, 13, 0, 58, 695, DateTimeKind.Local).AddTicks(5781),
+                            ExpirationDate = new DateTime(2023, 9, 27, 11, 19, 55, 199, DateTimeKind.Local).AddTicks(7467),
                             IsContinued = true,
                             Name = "Çikolata",
                             PurchasePrice = 7m,
@@ -250,7 +251,7 @@ namespace Market_Otomasyonu.Data.Migrations
                             ProductID = 2,
                             Brand = "Eti",
                             CategoryID = 1,
-                            ExpirationDate = new DateTime(2023, 9, 27, 13, 0, 58, 695, DateTimeKind.Local).AddTicks(5787),
+                            ExpirationDate = new DateTime(2023, 9, 27, 11, 19, 55, 199, DateTimeKind.Local).AddTicks(7475),
                             IsContinued = true,
                             Name = "Çikolatalı Gofret",
                             PurchasePrice = 8m,
@@ -266,7 +267,7 @@ namespace Market_Otomasyonu.Data.Migrations
                             ProductID = 3,
                             Brand = "Ülker",
                             CategoryID = 1,
-                            ExpirationDate = new DateTime(2023, 9, 27, 13, 0, 58, 695, DateTimeKind.Local).AddTicks(5789),
+                            ExpirationDate = new DateTime(2023, 9, 27, 11, 19, 55, 199, DateTimeKind.Local).AddTicks(7477),
                             IsContinued = true,
                             Name = "Çikolatalı Gofret",
                             PurchasePrice = 8m,

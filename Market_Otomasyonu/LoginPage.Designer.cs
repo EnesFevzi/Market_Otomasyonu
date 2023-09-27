@@ -30,6 +30,9 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
 			grpGirisPaneli = new GroupBox();
+			button3 = new Button();
+			button2 = new Button();
+			button1 = new Button();
 			btnSifreyiGoster = new Button();
 			label2 = new Label();
 			label1 = new Label();
@@ -41,6 +44,9 @@
 			// 
 			// grpGirisPaneli
 			// 
+			grpGirisPaneli.Controls.Add(button3);
+			grpGirisPaneli.Controls.Add(button2);
+			grpGirisPaneli.Controls.Add(button1);
 			grpGirisPaneli.Controls.Add(btnSifreyiGoster);
 			grpGirisPaneli.Controls.Add(label2);
 			grpGirisPaneli.Controls.Add(label1);
@@ -48,10 +54,40 @@
 			grpGirisPaneli.Controls.Add(txtKullaniciAdi);
 			grpGirisPaneli.Location = new Point(12, 12);
 			grpGirisPaneli.Name = "grpGirisPaneli";
-			grpGirisPaneli.Size = new Size(347, 153);
+			grpGirisPaneli.Size = new Size(347, 147);
 			grpGirisPaneli.TabIndex = 0;
 			grpGirisPaneli.TabStop = false;
 			grpGirisPaneli.Text = "Giriş Paneli";
+			// 
+			// button3
+			// 
+			button3.Location = new Point(0, 99);
+			button3.Name = "button3";
+			button3.Size = new Size(75, 23);
+			button3.TabIndex = 3;
+			button3.Text = "ebru";
+			button3.UseVisualStyleBackColor = true;
+			button3.Click += button3_Click;
+			// 
+			// button2
+			// 
+			button2.Location = new Point(0, 70);
+			button2.Name = "button2";
+			button2.Size = new Size(75, 23);
+			button2.TabIndex = 3;
+			button2.Text = "ihsan";
+			button2.UseVisualStyleBackColor = true;
+			button2.Click += button2_Click;
+			// 
+			// button1
+			// 
+			button1.Location = new Point(0, 41);
+			button1.Name = "button1";
+			button1.Size = new Size(75, 23);
+			button1.TabIndex = 3;
+			button1.Text = "enes";
+			button1.UseVisualStyleBackColor = true;
+			button1.Click += button1_Click;
 			// 
 			// btnSifreyiGoster
 			// 
@@ -135,5 +171,8 @@
 		private TextBox txtSifre;
 		private Button btnGirisYap;
 		private Button btnSifreyiGoster;
+		private Button button1;
+		private Button button3;
+		private Button button2;
 	}
 }

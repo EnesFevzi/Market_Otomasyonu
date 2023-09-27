@@ -127,9 +127,9 @@ namespace Market_Otomasyonu.UI
 					};
 					saledProduct.Stock -= Convert.ToInt32(item.SubItems[6].Text);
 				
-					
-					_context.Sales.Add(sale);
-					_context.SaveChanges();
+					_saleRepository.Add(sale);
+					//_context.Sales.Add(sale);
+					//_context.SaveChanges();
 
 					//context.SaveChanges();
 				};

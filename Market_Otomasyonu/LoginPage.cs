@@ -32,9 +32,14 @@ namespace Market_Otomasyonu.UI
 			var result = _userService.AuthenticateUser(txtKullaniciAdi.Text, _userService.PasswordHash(txtSifre.Text));
 			if (result == "Giriş Başarılı")
 			{
-				UserPanel userpanel = new UserPanel();
-				this.Hide();
-				userpanel.ShowDialog();
+				var user = _userService.GetByFilterUser(X => X.Username == txtKullaniciAdi.Text && X.Password == _userService.PasswordHash(txtSifre.Text));
+				if (user != null)
+				{
+					UserPanel userpanel = new UserPanel(user);
+					this.Hide();
+					userpanel.ShowDialog();
+				}
+
 			}
 			if (result == "Şifre Yanlış")
 			{
@@ -56,6 +61,24 @@ namespace Market_Otomasyonu.UI
 		private void btnSifreyiGoster_MouseDown(object sender, MouseEventArgs e)
 		{
 			txtSifre.PasswordChar = default;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			txtKullaniciAdi.Text = "enesfevzi";
+			txtSifre.Text = "*123456ASas*";
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			txtKullaniciAdi.Text = "ihsantapan";
+			txtSifre.Text = "*123456ASas*";
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			txtKullaniciAdi.Text = "ebrucevik";
+			txtSifre.Text = "*123456ASas*";
 		}
 	}
 }
