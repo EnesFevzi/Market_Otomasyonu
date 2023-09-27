@@ -1,4 +1,4 @@
-﻿using Market_Otomasyonu.Data.Extensions;
+﻿using Market_Otomasyonu.Data.SeedData;
 using Market_Otomasyonu.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,10 +12,9 @@ namespace Market_Otomasyonu.Data.Context
 {
 	public class AppDbContext:DbContext
 	{
-
-
 		public DbSet<Sale> Sales { get; set; }
 		public DbSet<Product> Products { get; set; }
+		public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<AppUser> Users { get; set; }
 		public DbSet<AppRole> Roles { get; set; }
@@ -28,7 +27,10 @@ namespace Market_Otomasyonu.Data.Context
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.SeedData();
+			modelBuilder.ApplyConfiguration(new SeedCategories());
+			modelBuilder.ApplyConfiguration(new SeedProducts());
+			modelBuilder.ApplyConfiguration(new SeedAppRole());
+			modelBuilder.ApplyConfiguration(new SeedAppUser());
 			base.OnModelCreating(modelBuilder);
 		}
 	}

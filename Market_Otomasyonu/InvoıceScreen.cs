@@ -25,16 +25,16 @@ namespace Market_Otomasyonu.UI
 
 		private void InvoıceScreen_Load(object sender, EventArgs e)
 		{
-			var billSaledProducts = _context.Sales.Where(x => x.FaturaID == billID).ToList();
-			decimal billPrice = 0;
-			foreach (var item in billSaledProducts)
-			{
-				string[] arr = { item.Name, item.Quantity.ToString(), item.TotalPrice.ToString(), item.SaleDate.ToString(), item.PaymentMethod.ToString() };
-				ListViewItem lvi = new ListViewItem(arr);
-				lstFatura.Items.Add(lvi);
-				billPrice += item.TotalPrice;
-			}
-			lblFaturaTutarı.Text = $"Toplam Fatura Tutarı: {billPrice} TL'dir";
+			//var billSaledProducts = _context.Sales.Where(x => x.FaturaID == billID).ToList();
+			//decimal billPrice = 0;
+			//foreach (var item in billSaledProducts)
+			//{
+			//	string[] arr = { item.Name, item.Quantity.ToString(), item.TotalPrice.ToString(), item.SaleDate.ToString(), item.PaymentMethod.ToString() };
+			//	ListViewItem lvi = new ListViewItem(arr);
+			//	lstFatura.Items.Add(lvi);
+			//	billPrice += item.TotalPrice;
+			//}
+			//lblFaturaTutarı.Text = $"Toplam Fatura Tutarı: {billPrice} TL'dir";
 		}
 	}
 }

@@ -11,8 +11,9 @@ namespace Market_Otomasyonu.Entity.Entities
 	{
         public Product()
         {
-            Sales= new List<Sale>();
-        }
+			ShoppingCarts=new List<ShoppingCart>();
+
+		}
         public int ProductID { get; set; }
         public string Name { get; set; }
         public string Brand { get; set; }
@@ -31,7 +32,8 @@ namespace Market_Otomasyonu.Entity.Entities
         public int CategoryID { get; set; }
         public Category Category { get; set; }
 
-        public virtual ICollection<Sale> Sales { get; set;}
+        public ICollection<ShoppingCart> ShoppingCarts { get; set;}
+
 
     }
 }

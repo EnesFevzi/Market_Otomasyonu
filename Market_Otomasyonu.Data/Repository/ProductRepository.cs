@@ -1,5 +1,6 @@
 ﻿using Market_Otomasyonu.Data.Context;
 using Market_Otomasyonu.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,10 @@ namespace Market_Otomasyonu.Data.Repository
 		public List<Product> GetAll()
 		{
 			return _context.Set<Product>().ToList();
+		}
+		public List<Product> GetAllProductWtihCategory()
+		{
+			return _context.Products.Include(x=>x.Category).ToList();
 		}
 
 		public Product GetByID(int id)

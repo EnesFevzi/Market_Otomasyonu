@@ -1,4 +1,5 @@
-﻿using Market_Otomasyonu.Data.Context;
+﻿using Market_Otomasyonu.Business.Concrete;
+using Market_Otomasyonu.Data.Context;
 using Market_Otomasyonu.Data.Repository;
 using Market_Otomasyonu.Entity.Entities;
 using Market_Otomasyonu.Entity.Enums;
@@ -18,34 +19,48 @@ namespace Market_Otomasyonu.UI
 	public partial class SaleScreen : Form
 	{
 		private readonly ProductRepository _productRepository;
+		private readonly ProductService _productService;
 		private readonly AppDbContext _context;
 		private readonly SaleRepository _saleRepository;
+		private readonly CategoryService _categoryService;
+		private readonly CategoryRepository _categoryRepository;
+		private List<Product> selectedProducts = new List<Product>();
 		public SaleScreen()
 		{
 			_context = new AppDbContext();
 			_productRepository = new ProductRepository();
 			_saleRepository = new SaleRepository();
+			_productService = new ProductService();
+			_categoryService = new CategoryService();
+			_categoryRepository = new CategoryRepository();
 			InitializeComponent();
 		}
-		int selectedProductID;
-		Product selectedProduct;
+
+		private void SaleScreen_Load(object sender, EventArgs e)
+		{
+			//GetAllProducts();
+		}
 		private void txtUrunAra_TextChanged(object sender, EventArgs e)
 		{
-			lstArananUrunler.Items.Clear();
-			string productSearch = txtUrunAra.Text;
-			var productSearched = _context.Products.Where(x => x.Name.Contains(productSearch)).ToList();
+			LoadProduct(txtUrunAra.Text);
+		}
 
-			foreach (var item in productSearched)
+		private void LoadProduct(string arananKelime = "")
+		{
+			lstArananUrunler.Items.Clear();
+			var products = _productRepository.GetAll();
+
+			foreach (var product in products)
 			{
-				string[] arr = {
-					item.ProductID.ToString(),
-					item.Name,
-					item.Brand,
-					item.Unit.ToString(),
-					(item.SalePrice * item.TaxRatio).ToString("0.00") //ürünün vergili satış fiyatı
-                };
-				ListViewItem lvi = new ListViewItem(arr);
-				lstArananUrunler.Items.Add(lvi);
+				if (arananKelime == "" || product.Name.ToLower().Contains(arananKelime))
+				{
+					ListViewItem item = new ListViewItem(product.Name);
+					Category category = _categoryRepository.GetByID(product.CategoryID);
+					item.SubItems.Add(product.Brand);
+					item.SubItems.Add(category.Name);
+					item.Tag = product;
+					lstArananUrunler.Items.Add(item);
+				}
 			}
 		}
 		decimal selectedProductQuantity;
@@ -53,132 +68,139 @@ namespace Market_Otomasyonu.UI
 		decimal totalSalesPrice = 0;
 		private void btnSiparisEkle_Click(object sender, EventArgs e)
 		{
-			if (lstArananUrunler.SelectedItems.Count == 0 && nmrBirimFiyat.Value == 0)
+
+			if (lstArananUrunler.SelectedItems.Count > 0)
 			{
-				MessageBox.Show("Lütfen önce bir ürün seçin ve miktar belirtin");
-			}
-			else
-			{
+				Product selectedProduct = lstArananUrunler.SelectedItems[0].Tag as Product;
 
-				selectedProductID = Convert.ToInt32(lstArananUrunler.SelectedItems[0].Text);
-				selectedProductQuantity = nmrAdet.Value;
-				var productSearched = _context.Products.Where(x => x.ProductID == selectedProductID).ToList();
+				decimal selectedQuantity = nmrAdet.Value;
 
-				foreach (Product item in productSearched)
-				{
-					if (item.Stock == 0)
-					{
-						MessageBox.Show($"İstenen ürün stokta kalmamıştır");
-					}
-					else if (item.Stock < selectedProductQuantity)
-					{
-						MessageBox.Show($"İstenen üründen stokta {item.Stock} {item.Unit} kadar kaldı, Lütfen uygun miktarda satış yapınız");
-					}
-					else
-					{
-						string[] arr = {
-						item.ProductID.ToString(),
-						item.Name,
-						item.Brand,
-						_context.Categories.First(x=>x.CategoryID == item.CategoryID).Name,
-						  item.Unit.ToString(),
-						((item.SalePrice + (item.SalePrice * item.TaxRatio)) * selectedProductQuantity).ToString("0.00"),//üründen kaç tane alındı ise onun vergili fiyatinın hesaplanması
-                        selectedProductQuantity.ToString(),
-						DateTime.Now.ToString("d")
-					};
-						ListViewItem lvi = new ListViewItem(arr);
-						lstSiparisler.Items.Add(lvi);
-
-						totalSalesQuantity += selectedProductQuantity;
-						totalSalesPrice += ((item.SalePrice + (item.SalePrice * item.TaxRatio)) * selectedProductQuantity);
-
-						lblToplamSatisAdedi.Text = totalSalesQuantity.ToString("0.00");
-						lblToplamFiyat.Text = totalSalesPrice.ToString("0.00");
-					}
-
-				}
-			}
-		}
-		Product saledProduct;
-		private void btnSiparisiTamamla_Click(object sender, EventArgs e)
-		{
-			var billID = _context.Sales.OrderByDescending(x => x.FaturaID).Select(x => x.FaturaID).FirstOrDefault();
-
-			if (lstSiparisler.Items.Count == 0 || (rdbNakit.Checked == false && rdbKrediKarti.Checked == false))
-			{
-				MessageBox.Show("Lütfen sipariş listesine ekleme yapın ve bir ödeme yöntemi seçin");
-			}
-			else
-			{
+				bool productAlreadyInCart = false;
 				foreach (ListViewItem item in lstSiparisler.Items)
 				{
-					saledProduct = _context.Products.First(x => x.ProductID == Convert.ToInt32(item.SubItems[0].Text));
-					var sale = new Sale()
+					Product cartProduct = item.Tag as Product;
+					if (cartProduct.ProductID == selectedProduct.ProductID)
 					{
-						Name = saledProduct.Name,
-						ProfitPrice = (saledProduct.SalePrice - saledProduct.PurchasePrice) * Convert.ToDecimal(item.SubItems[6].Text),
-						Products = new List<Product>() { saledProduct },
-						UnitPrice = saledProduct.UnitPrice,
-						Quantity = Convert.ToDecimal(item.SubItems[6].Text),
-						TotalPrice = Convert.ToDecimal(item.SubItems[5].Text),
-						SaleDate = DateTime.Now,
-						PaymentMethod = rdbKrediKarti.Checked ? PaymentMethod.CreditCard : PaymentMethod.Cash,
-						FaturaID = billID + 1
-					};
-					saledProduct.Stock -= Convert.ToInt32(item.SubItems[6].Text);
+						item.SubItems[7].Text = (decimal.Parse(item.SubItems[7].Text) + selectedQuantity).ToString();
+						totalSalesQuantity += nmrAdet.Value;
+						lblToplamSatisAdedi.Text = totalSalesQuantity.ToString();
+						productAlreadyInCart = true;
+						break;
+					}
+				}
+
+				if (!productAlreadyInCart)
+				{
+					Category category = _categoryRepository.GetByID(selectedProduct.CategoryID);
+					decimal productTotalPrice = selectedProduct.PurchasePrice * selectedQuantity;
+
+					ListViewItem lv = new ListViewItem(selectedProduct.Name);
+					lv.SubItems.Add(selectedProduct.Brand);
+					lv.SubItems.Add(category.Name);
+					lv.SubItems.Add(selectedProduct.Unit.ToString());
+					lv.SubItems.Add(selectedProduct.PurchasePrice.ToString());
+					lv.SubItems.Add(selectedProduct.Stock.ToString());
+					
+					lv.SubItems.Add(selectedProduct.ExpirationDate.ToString());
+					lv.SubItems.Add(selectedQuantity.ToString());
+					lv.Tag = selectedProduct;
+					lv.SubItems.Add(productTotalPrice.ToString());
+
+					selectedProducts.Add(selectedProduct);
+					lstSiparisler.Items.Add(lv);
+
+					totalSalesPrice += productTotalPrice;
+					totalSalesQuantity += selectedQuantity;
+					lblToplamFiyat.Text = totalSalesPrice.ToString();
+					lblToplamSatisAdedi.Text = totalSalesQuantity.ToString();
+
+				}
+
 				
-					_saleRepository.Add(sale);
-					//_context.Sales.Add(sale);
-					//_context.SaveChanges();
-
-					//context.SaveChanges();
-				};
-
-				MessageBox.Show("Sipariş başarılı bir şekilde tamamlandı");
-				lstArananUrunler.Items.Clear();
-				lstSiparisler.Items.Clear();
-
-				//Helper.Temizle(grpUrunEkle.Controls);
-				totalSalesPrice = 0;
-				totalSalesQuantity = 0;
-				lblToplamFiyat.Text = "0";
-				lblToplamSatisAdedi.Text = "0";
-				txtUrunAra.Text = string.Empty;
-				nmrAdet.Value = 0;
-				rdbKrediKarti.Checked = false;
-				rdbNakit.Checked = false;
-				billID++;
-				InvoıceScreen report = new InvoıceScreen(billID);
-				report.ShowDialog();
 			}
+
+
+		}
+		private void btnSiparisiTamamla_Click(object sender, EventArgs e)
+		{
+			
+			decimal unitPrice = 0;
+			decimal quantity = 0;
+			decimal profitPrice = 0;
+			decimal totalSalePrice = 0;
+			var sale = new Sale();
+			sale.SaleDate = DateTime.Now;
+			sale.PaymentMethod = rdbKrediKarti.Checked ? PaymentMethod.CreditCard : PaymentMethod.Cash;
+			var shoppingCarts = new List<ShoppingCart>(); 
+
+			foreach (ListViewItem item in lstSiparisler.Items)
+			{
+				var saledProduct = item.Tag as Product;
+				 unitPrice = Convert.ToDecimal(item.SubItems[4].Text);
+				 quantity = Convert.ToDecimal(item.SubItems[7].Text);
+				 profitPrice = (saledProduct.SalePrice - saledProduct.PurchasePrice) * quantity;
+				totalSalePrice += Convert.ToDecimal(item.SubItems[8].Text);
+				saledProduct.Stock -= Convert.ToInt32(item.SubItems[7].Text);
+				_productRepository.Update(saledProduct);
+
+				var shoppingCart = new ShoppingCart
+				{
+					Name = saledProduct.Name,
+					Brand = saledProduct.Brand,
+					PurchasePrice = saledProduct.PurchasePrice,
+					UnitPrice = unitPrice,
+					SalePrice = saledProduct.SalePrice,
+					Quantity = quantity,
+					ProductID = saledProduct.ProductID,
+					Sale = sale
+				};
+				shoppingCarts.Add(shoppingCart);
+			}
+			sale.Quantity = quantity;
+			sale.TotalPrice = totalSalePrice;
+			sale.ShoppingCarts = shoppingCarts;
+			_saleRepository.Add(sale);
+			MessageBox.Show("Kaydetme İşlemi Başarılı");
+
 		}
 
 		private void btnSiparisSil_Click(object sender, EventArgs e)
 		{
-			if (lstSiparisler.SelectedItems.Count == 0)
+			var selectedProduct = lstSiparisler.SelectedIndices[0];
+
+			if (lstSiparisler.SelectedItems.Count > 0)
 			{
-				MessageBox.Show("Lütfen silmek istediğiniz ürünü seçiniz");
+				if (selectedProduct != null)
+				{
+					lstSiparisler.Items.RemoveAt(selectedProduct);
+				}
 			}
 			else
 			{
-				if (lstSiparisler.SelectedItems.Count > 0)
-				{
-					foreach (ListViewItem item in lstSiparisler.SelectedItems)
-					{
-						totalSalesQuantity -= Convert.ToDecimal(item.SubItems[6].Text);
-						totalSalesPrice -= Convert.ToDecimal(item.SubItems[5].Text);
+				MessageBox.Show("Hata! Ürün bulunamadı!");
+			}
 
-						lblToplamSatisAdedi.Text = totalSalesQuantity.ToString("0.00");
-						lblToplamFiyat.Text = totalSalesPrice.ToString("0.00");
-					}
-					int index = lstSiparisler.SelectedIndices[0];
-					ListViewItem selectedItem = lstSiparisler.SelectedItems[0];
-					lstSiparisler.Items.RemoveAt(index);
-					lstSiparisler.Refresh();
-					MessageBox.Show("Silme işleminiz gerçekleşti");
+		}
 
-				}
+
+		private void GetAllProducts()
+		{
+			lstArananUrunler.Items.Clear();
+
+			var products = _productRepository.GetAll();
+
+			foreach (var item in products)
+			{
+				ListViewItem lv = new ListViewItem();
+				lv.Text = item.Name;
+				lv.SubItems.Add(item.Brand);
+				lv.SubItems.Add(item.Unit.ToString());
+				lv.SubItems.Add(item.PurchasePrice.ToString());
+				lv.Tag = item;
+				lstArananUrunler.Items.Add(lv);
 			}
 		}
+
+
 	}
 }

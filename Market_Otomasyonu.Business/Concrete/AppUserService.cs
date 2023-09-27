@@ -1,6 +1,7 @@
 ﻿using Market_Otomasyonu.Business.Abstract;
 using Market_Otomasyonu.Data.Repository;
 using Market_Otomasyonu.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,5 +130,6 @@ namespace Market_Otomasyonu.Business.Concrete
 		{
 			_appUserRepository.Delete(user);
 		}
+		
 	}
 }

@@ -33,7 +33,6 @@
 			label1 = new Label();
 			txtUrunAra = new TextBox();
 			lstArananUrunler = new ListView();
-			columnHeader1 = new ColumnHeader();
 			columnHeader2 = new ColumnHeader();
 			columnHeader4 = new ColumnHeader();
 			columnHeader3 = new ColumnHeader();
@@ -41,7 +40,6 @@
 			btnSiparisiTamamla = new Button();
 			label6 = new Label();
 			lstSiparisler = new ListView();
-			columnHeader6 = new ColumnHeader();
 			columnHeader7 = new ColumnHeader();
 			columnHeader14 = new ColumnHeader();
 			columnHeader8 = new ColumnHeader();
@@ -49,6 +47,8 @@
 			columnHeader10 = new ColumnHeader();
 			columnHeader11 = new ColumnHeader();
 			columnHeader12 = new ColumnHeader();
+			columnHeader1 = new ColumnHeader();
+			columnHeader13 = new ColumnHeader();
 			grpFiyatAlani = new GroupBox();
 			label8 = new Label();
 			lblToplamFiyat = new Label();
@@ -59,17 +59,21 @@
 			rdbKrediKarti = new RadioButton();
 			rdbNakit = new RadioButton();
 			btnSiparisSil = new Button();
+			grpUrunAra = new GroupBox();
+			grpUrunListesi = new GroupBox();
 			grpUrunEkle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)nmrAdet).BeginInit();
 			grpFiyatAlani.SuspendLayout();
 			grpOdemeYontemi.SuspendLayout();
+			grpUrunAra.SuspendLayout();
+			grpUrunListesi.SuspendLayout();
 			SuspendLayout();
 			// 
 			// grpUrunEkle
 			// 
 			grpUrunEkle.Controls.Add(nmrAdet);
 			grpUrunEkle.Controls.Add(label1);
-			grpUrunEkle.Location = new Point(422, 37);
+			grpUrunEkle.Location = new Point(442, 23);
 			grpUrunEkle.Name = "grpUrunEkle";
 			grpUrunEkle.Size = new Size(205, 77);
 			grpUrunEkle.TabIndex = 11;
@@ -95,7 +99,7 @@
 			// 
 			// txtUrunAra
 			// 
-			txtUrunAra.Location = new Point(80, 8);
+			txtUrunAra.Location = new Point(84, 18);
 			txtUrunAra.Name = "txtUrunAra";
 			txtUrunAra.Size = new Size(259, 23);
 			txtUrunAra.TabIndex = 1;
@@ -103,20 +107,15 @@
 			// 
 			// lstArananUrunler
 			// 
-			lstArananUrunler.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader4, columnHeader3, columnHeader5 });
+			lstArananUrunler.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader4, columnHeader3, columnHeader5 });
 			lstArananUrunler.FullRowSelect = true;
 			lstArananUrunler.GridLines = true;
-			lstArananUrunler.Location = new Point(12, 37);
+			lstArananUrunler.Location = new Point(16, 47);
 			lstArananUrunler.Name = "lstArananUrunler";
-			lstArananUrunler.Size = new Size(395, 181);
+			lstArananUrunler.Size = new Size(395, 207);
 			lstArananUrunler.TabIndex = 10;
 			lstArananUrunler.UseCompatibleStateImageBehavior = false;
 			lstArananUrunler.View = View.Details;
-			// 
-			// columnHeader1
-			// 
-			columnHeader1.Text = "ID";
-			columnHeader1.Width = 100;
 			// 
 			// columnHeader2
 			// 
@@ -137,9 +136,9 @@
 			// 
 			// btnSiparisiTamamla
 			// 
-			btnSiparisiTamamla.Location = new Point(933, 522);
+			btnSiparisiTamamla.Location = new Point(1002, 527);
 			btnSiparisiTamamla.Name = "btnSiparisiTamamla";
-			btnSiparisiTamamla.Size = new Size(150, 43);
+			btnSiparisiTamamla.Size = new Size(226, 43);
 			btnSiparisiTamamla.TabIndex = 9;
 			btnSiparisiTamamla.Text = "Siparişi Tamamla";
 			btnSiparisiTamamla.UseVisualStyleBackColor = true;
@@ -149,7 +148,7 @@
 			// 
 			label6.AutoSize = true;
 			label6.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label6.Location = new Point(12, 13);
+			label6.Location = new Point(16, 23);
 			label6.Name = "label6";
 			label6.Size = new Size(62, 18);
 			label6.TabIndex = 0;
@@ -157,20 +156,15 @@
 			// 
 			// lstSiparisler
 			// 
-			lstSiparisler.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader14, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12 });
+			lstSiparisler.Columns.AddRange(new ColumnHeader[] { columnHeader7, columnHeader14, columnHeader8, columnHeader9, columnHeader10, columnHeader11, columnHeader12, columnHeader1, columnHeader13 });
 			lstSiparisler.FullRowSelect = true;
 			lstSiparisler.GridLines = true;
-			lstSiparisler.Location = new Point(12, 224);
+			lstSiparisler.Location = new Point(6, 22);
 			lstSiparisler.Name = "lstSiparisler";
-			lstSiparisler.Size = new Size(813, 341);
+			lstSiparisler.Size = new Size(931, 341);
 			lstSiparisler.TabIndex = 12;
 			lstSiparisler.UseCompatibleStateImageBehavior = false;
 			lstSiparisler.View = View.Details;
-			// 
-			// columnHeader6
-			// 
-			columnHeader6.Text = "ID";
-			columnHeader6.Width = 100;
 			// 
 			// columnHeader7
 			// 
@@ -183,13 +177,13 @@
 			// 
 			// columnHeader8
 			// 
-			columnHeader8.DisplayIndex = 4;
+			columnHeader8.DisplayIndex = 3;
 			columnHeader8.Text = "Kategori";
 			columnHeader8.Width = 100;
 			// 
 			// columnHeader9
 			// 
-			columnHeader9.DisplayIndex = 3;
+			columnHeader9.DisplayIndex = 2;
 			columnHeader9.Text = "Birimi";
 			columnHeader9.Width = 100;
 			// 
@@ -205,8 +199,18 @@
 			// 
 			// columnHeader12
 			// 
-			columnHeader12.Text = "Tarih";
-			columnHeader12.Width = 100;
+			columnHeader12.Text = "Son Kullanım Tarihi";
+			columnHeader12.Width = 120;
+			// 
+			// columnHeader1
+			// 
+			columnHeader1.Text = "Adet";
+			columnHeader1.Width = 120;
+			// 
+			// columnHeader13
+			// 
+			columnHeader13.Text = "Toplam Fiyat";
+			columnHeader13.Width = 120;
 			// 
 			// grpFiyatAlani
 			// 
@@ -214,7 +218,7 @@
 			grpFiyatAlani.Controls.Add(lblToplamFiyat);
 			grpFiyatAlani.Controls.Add(lblToplamSatisAdedi);
 			grpFiyatAlani.Controls.Add(label7);
-			grpFiyatAlani.Location = new Point(851, 412);
+			grpFiyatAlani.Location = new Point(996, 417);
 			grpFiyatAlani.Name = "grpFiyatAlani";
 			grpFiyatAlani.Size = new Size(232, 104);
 			grpFiyatAlani.TabIndex = 13;
@@ -263,19 +267,21 @@
 			// 
 			// btnSiparisEkle
 			// 
-			btnSiparisEkle.Location = new Point(422, 175);
+			btnSiparisEkle.BackColor = Color.Chartreuse;
+			btnSiparisEkle.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSiparisEkle.Location = new Point(431, 211);
 			btnSiparisEkle.Name = "btnSiparisEkle";
 			btnSiparisEkle.Size = new Size(205, 43);
 			btnSiparisEkle.TabIndex = 9;
-			btnSiparisEkle.Text = "Siparis Ekle";
-			btnSiparisEkle.UseVisualStyleBackColor = true;
+			btnSiparisEkle.Text = "SİPARİŞ EKLE";
+			btnSiparisEkle.UseVisualStyleBackColor = false;
 			btnSiparisEkle.Click += btnSiparisEkle_Click;
 			// 
 			// grpOdemeYontemi
 			// 
 			grpOdemeYontemi.Controls.Add(rdbKrediKarti);
 			grpOdemeYontemi.Controls.Add(rdbNakit);
-			grpOdemeYontemi.Location = new Point(851, 330);
+			grpOdemeYontemi.Location = new Point(996, 335);
 			grpOdemeYontemi.Name = "grpOdemeYontemi";
 			grpOdemeYontemi.Size = new Size(232, 76);
 			grpOdemeYontemi.TabIndex = 13;
@@ -306,31 +312,52 @@
 			// 
 			// btnSiparisSil
 			// 
-			btnSiparisSil.Location = new Point(727, 175);
+			btnSiparisSil.BackColor = Color.Red;
+			btnSiparisSil.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSiparisSil.Location = new Point(642, 211);
 			btnSiparisSil.Name = "btnSiparisSil";
-			btnSiparisSil.Size = new Size(98, 43);
+			btnSiparisSil.Size = new Size(203, 43);
 			btnSiparisSil.TabIndex = 9;
-			btnSiparisSil.Text = "Siparisi Kaldır";
-			btnSiparisSil.UseVisualStyleBackColor = true;
+			btnSiparisSil.Text = "SİPARİŞİ KALDIR";
+			btnSiparisSil.UseVisualStyleBackColor = false;
 			btnSiparisSil.Click += btnSiparisSil_Click;
+			// 
+			// grpUrunAra
+			// 
+			grpUrunAra.Controls.Add(label6);
+			grpUrunAra.Controls.Add(txtUrunAra);
+			grpUrunAra.Controls.Add(lstArananUrunler);
+			grpUrunAra.Controls.Add(grpUrunEkle);
+			grpUrunAra.Controls.Add(btnSiparisSil);
+			grpUrunAra.Controls.Add(btnSiparisEkle);
+			grpUrunAra.Location = new Point(12, 12);
+			grpUrunAra.Name = "grpUrunAra";
+			grpUrunAra.Size = new Size(874, 260);
+			grpUrunAra.TabIndex = 14;
+			grpUrunAra.TabStop = false;
+			// 
+			// grpUrunListesi
+			// 
+			grpUrunListesi.Controls.Add(lstSiparisler);
+			grpUrunListesi.Location = new Point(12, 286);
+			grpUrunListesi.Name = "grpUrunListesi";
+			grpUrunListesi.Size = new Size(958, 374);
+			grpUrunListesi.TabIndex = 15;
+			grpUrunListesi.TabStop = false;
 			// 
 			// SaleScreen
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(1095, 585);
+			ClientSize = new Size(1251, 672);
+			Controls.Add(grpUrunListesi);
+			Controls.Add(grpUrunAra);
 			Controls.Add(grpOdemeYontemi);
 			Controls.Add(grpFiyatAlani);
-			Controls.Add(lstSiparisler);
-			Controls.Add(label6);
-			Controls.Add(grpUrunEkle);
-			Controls.Add(lstArananUrunler);
-			Controls.Add(btnSiparisSil);
-			Controls.Add(btnSiparisEkle);
 			Controls.Add(btnSiparisiTamamla);
-			Controls.Add(txtUrunAra);
 			Name = "SaleScreen";
 			Text = "SaleScreen";
+			Load += SaleScreen_Load;
 			grpUrunEkle.ResumeLayout(false);
 			grpUrunEkle.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)nmrAdet).EndInit();
@@ -338,8 +365,10 @@
 			grpFiyatAlani.PerformLayout();
 			grpOdemeYontemi.ResumeLayout(false);
 			grpOdemeYontemi.PerformLayout();
+			grpUrunAra.ResumeLayout(false);
+			grpUrunAra.PerformLayout();
+			grpUrunListesi.ResumeLayout(false);
 			ResumeLayout(false);
-			PerformLayout();
 		}
 
 		#endregion
@@ -356,7 +385,6 @@
 		private ComboBox cmbBirim;
 		private TextBox txtUrunAra;
 		private ListView lstArananUrunler;
-		private ColumnHeader columnHeader1;
 		private ColumnHeader columnHeader2;
 		private Button btnSil;
 		private Button btnGuncelle;
@@ -366,7 +394,6 @@
 		private ColumnHeader columnHeader4;
 		private ColumnHeader columnHeader5;
 		private ListView lstSiparisler;
-		private ColumnHeader columnHeader6;
 		private ColumnHeader columnHeader7;
 		private ColumnHeader columnHeader8;
 		private ColumnHeader columnHeader9;
@@ -385,5 +412,9 @@
 		private RadioButton rdbKrediKarti;
 		private RadioButton rdbNakit;
 		private Button btnSiparisSil;
+		private ColumnHeader columnHeader1;
+		private ColumnHeader columnHeader13;
+		private GroupBox grpUrunAra;
+		private GroupBox grpUrunListesi;
 	}
 }
