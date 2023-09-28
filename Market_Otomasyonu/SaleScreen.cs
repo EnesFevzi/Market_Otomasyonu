@@ -18,44 +18,38 @@ namespace Market_Otomasyonu.UI
 {
 	public partial class SaleScreen : Form
 	{
-		private readonly ProductRepository _productRepository;
 		private readonly ProductService _productService;
-		private readonly AppDbContext _context;
-		private readonly SaleRepository _saleRepository;
+		private readonly SaleService _saleService;
 		private readonly CategoryService _categoryService;
-		private readonly CategoryRepository _categoryRepository;
 		private List<Product> selectedProducts = new List<Product>();
 		public SaleScreen()
 		{
-			_context = new AppDbContext();
-			_productRepository = new ProductRepository();
-			_saleRepository = new SaleRepository();
 			_productService = new ProductService();
 			_categoryService = new CategoryService();
-			_categoryRepository = new CategoryRepository();
+			_saleService = new SaleService();
 			InitializeComponent();
 		}
 
 		private void SaleScreen_Load(object sender, EventArgs e)
 		{
-			//GetAllProducts();
+			GetAllProducts();
 		}
 		private void txtUrunAra_TextChanged(object sender, EventArgs e)
 		{
 			LoadProduct(txtUrunAra.Text);
 		}
 
-		private void LoadProduct(string arananKelime = "")
+		private void LoadProduct(string searchword = "")
 		{
 			lstArananUrunler.Items.Clear();
-			var products = _productRepository.GetAll();
+			var products = _productService.GetAll();
 
 			foreach (var product in products)
 			{
-				if (arananKelime == "" || product.Name.ToLower().Contains(arananKelime))
+				if (searchword == "" || product.Name.ToLower().Contains(searchword))
 				{
 					ListViewItem item = new ListViewItem(product.Name);
-					Category category = _categoryRepository.GetByID(product.CategoryID);
+					Category category = _categoryService.GetByIDCategory(product.CategoryID);
 					item.SubItems.Add(product.Brand);
 					item.SubItems.Add(category.Name);
 					item.Tag = product;
@@ -68,11 +62,31 @@ namespace Market_Otomasyonu.UI
 		decimal totalSalesPrice = 0;
 		private void btnSiparisEkle_Click(object sender, EventArgs e)
 		{
-
+			if (nmrAdet.Value == 0)
+			{
+				MessageBox.Show("Lütfen önce bir ürün seçin ve miktar belirtin");
+				return;
+			}
 			if (lstArananUrunler.SelectedItems.Count > 0)
 			{
-				Product selectedProduct = lstArananUrunler.SelectedItems[0].Tag as Product;
+				//Product selectedProduct = lstArananUrunler.SelectedItems[0].Tag as Product;
 
+				//decimal selectedQuantity = nmrAdet.Value;
+
+				//bool productAlreadyInCart = false;
+				//foreach (ListViewItem item in lstSiparisler.Items)
+				//{
+				//	Product cartProduct = item.Tag as Product;
+				//	if (cartProduct.ProductID == selectedProduct.ProductID)
+				//	{
+				//		item.SubItems[7].Text = (decimal.Parse(item.SubItems[7].Text) + selectedQuantity).ToString();
+				//		totalSalesQuantity += nmrAdet.Value;
+				//		lblToplamSatisAdedi.Text = totalSalesQuantity.ToString();
+				//		productAlreadyInCart = true;
+				//		break;
+				//	}
+				//}
+				Product selectedProduct = lstArananUrunler.SelectedItems[0].Tag as Product;
 				decimal selectedQuantity = nmrAdet.Value;
 
 				bool productAlreadyInCart = false;
@@ -81,8 +95,18 @@ namespace Market_Otomasyonu.UI
 					Product cartProduct = item.Tag as Product;
 					if (cartProduct.ProductID == selectedProduct.ProductID)
 					{
-						item.SubItems[7].Text = (decimal.Parse(item.SubItems[7].Text) + selectedQuantity).ToString();
-						totalSalesQuantity += nmrAdet.Value;
+						decimal currentQuantity = decimal.Parse(item.SubItems[7].Text);
+						decimal newQuantity = currentQuantity + selectedQuantity;
+
+						// Stok kontrolü
+						if (selectedProduct.Stock < newQuantity)
+						{
+							MessageBox.Show("Üzgünüz, stokta yeterli ürün bulunmamaktadır.");
+							return;
+						}
+
+						item.SubItems[7].Text = newQuantity.ToString();
+						totalSalesQuantity += selectedQuantity;
 						lblToplamSatisAdedi.Text = totalSalesQuantity.ToString();
 						productAlreadyInCart = true;
 						break;
@@ -91,7 +115,12 @@ namespace Market_Otomasyonu.UI
 
 				if (!productAlreadyInCart)
 				{
-					Category category = _categoryRepository.GetByID(selectedProduct.CategoryID);
+					if (selectedProduct.Stock < selectedQuantity)
+					{
+						MessageBox.Show("Üzgünüz, stokta yeterli ürün bulunmamaktadır.");
+						return;
+					}
+					Category category = _categoryService.GetByIDCategory(selectedProduct.CategoryID);
 					decimal productTotalPrice = selectedProduct.PurchasePrice * selectedQuantity;
 
 					ListViewItem lv = new ListViewItem(selectedProduct.Name);
@@ -100,7 +129,6 @@ namespace Market_Otomasyonu.UI
 					lv.SubItems.Add(selectedProduct.Unit.ToString());
 					lv.SubItems.Add(selectedProduct.PurchasePrice.ToString());
 					lv.SubItems.Add(selectedProduct.Stock.ToString());
-					
 					lv.SubItems.Add(selectedProduct.ExpirationDate.ToString());
 					lv.SubItems.Add(selectedQuantity.ToString());
 					lv.Tag = selectedProduct;
@@ -115,52 +143,58 @@ namespace Market_Otomasyonu.UI
 					lblToplamSatisAdedi.Text = totalSalesQuantity.ToString();
 
 				}
-
-				
 			}
-
-
 		}
 		private void btnSiparisiTamamla_Click(object sender, EventArgs e)
 		{
-			
+
 			decimal unitPrice = 0;
 			decimal quantity = 0;
 			decimal profitPrice = 0;
 			decimal totalSalePrice = 0;
-			var sale = new Sale();
-			sale.SaleDate = DateTime.Now;
-			sale.PaymentMethod = rdbKrediKarti.Checked ? PaymentMethod.CreditCard : PaymentMethod.Cash;
-			var shoppingCarts = new List<ShoppingCart>(); 
 
-			foreach (ListViewItem item in lstSiparisler.Items)
+			if (lstSiparisler.Items.Count == 0 || (rdbNakit.Checked == false && rdbKrediKarti.Checked == false))
 			{
-				var saledProduct = item.Tag as Product;
-				 unitPrice = Convert.ToDecimal(item.SubItems[4].Text);
-				 quantity = Convert.ToDecimal(item.SubItems[7].Text);
-				 profitPrice = (saledProduct.SalePrice - saledProduct.PurchasePrice) * quantity;
-				totalSalePrice += Convert.ToDecimal(item.SubItems[8].Text);
-				saledProduct.Stock -= Convert.ToInt32(item.SubItems[7].Text);
-				_productRepository.Update(saledProduct);
-
-				var shoppingCart = new ShoppingCart
-				{
-					Name = saledProduct.Name,
-					Brand = saledProduct.Brand,
-					PurchasePrice = saledProduct.PurchasePrice,
-					UnitPrice = unitPrice,
-					SalePrice = saledProduct.SalePrice,
-					Quantity = quantity,
-					ProductID = saledProduct.ProductID,
-					Sale = sale
-				};
-				shoppingCarts.Add(shoppingCart);
+				MessageBox.Show("Lütfen sipariş listesine ekleme yapın veya bir ödeme yöntemi seçin");
 			}
-			sale.Quantity = quantity;
-			sale.TotalPrice = totalSalePrice;
-			sale.ShoppingCarts = shoppingCarts;
-			_saleRepository.Add(sale);
-			MessageBox.Show("Kaydetme İşlemi Başarılı");
+			else
+			{
+				var sale = new Sale();
+				sale.SaleDate = DateTime.Now;
+				sale.PaymentMethod = rdbKrediKarti.Checked ? PaymentMethod.CreditCard : PaymentMethod.Cash;
+				var shoppingCarts = new List<ShoppingCart>();
+
+				foreach (ListViewItem item in lstSiparisler.Items)
+				{
+					var saledProduct = item.Tag as Product;
+					unitPrice = Convert.ToDecimal(item.SubItems[4].Text);
+					quantity = Convert.ToDecimal(item.SubItems[7].Text);
+					profitPrice = (saledProduct.SalePrice - saledProduct.PurchasePrice) * quantity;
+					totalSalePrice += Convert.ToDecimal(item.SubItems[8].Text);
+					saledProduct.Stock -= Convert.ToInt32(item.SubItems[7].Text);
+					_productService.Update(saledProduct);
+
+					var shoppingCart = new ShoppingCart
+					{
+						Name = saledProduct.Name,
+						Brand = saledProduct.Brand,
+						PurchasePrice = saledProduct.PurchasePrice,
+						UnitPrice = unitPrice,
+						SalePrice = saledProduct.SalePrice,
+						Quantity = quantity,
+						ProductID = saledProduct.ProductID,
+						Sale = sale
+					};
+					shoppingCarts.Add(shoppingCart);
+				}
+				sale.Quantity = quantity;
+				sale.TotalPrice = totalSalePrice;
+				sale.ShoppingCarts = shoppingCarts;
+				sale.ProfitPrice = profitPrice;
+				_saleService.Add(sale);
+				MessageBox.Show("Kaydetme İşlemi Başarılı");
+			}
+			
 
 		}
 
@@ -172,7 +206,17 @@ namespace Market_Otomasyonu.UI
 			{
 				if (selectedProduct != null)
 				{
+					foreach (ListViewItem item in lstSiparisler.SelectedItems)
+					{
+						totalSalesQuantity -= Convert.ToDecimal(item.SubItems[7].Text);
+						totalSalesPrice -= Convert.ToDecimal(item.SubItems[8].Text);
+
+						lblToplamSatisAdedi.Text = totalSalesQuantity.ToString("0.00");
+						lblToplamFiyat.Text = totalSalesPrice.ToString("0.00");
+					}
+				
 					lstSiparisler.Items.RemoveAt(selectedProduct);
+					MessageBox.Show("Silme işleminiz gerçekleşti");
 				}
 			}
 			else
@@ -187,7 +231,7 @@ namespace Market_Otomasyonu.UI
 		{
 			lstArananUrunler.Items.Clear();
 
-			var products = _productRepository.GetAll();
+			var products = _productService.GetAll();
 
 			foreach (var item in products)
 			{

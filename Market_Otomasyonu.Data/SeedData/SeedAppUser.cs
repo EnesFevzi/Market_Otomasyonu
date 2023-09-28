@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Emit;
+using Market_Otomasyonu.Entity.Enums;
 
 namespace Market_Otomasyonu.Data.SeedData
 {
@@ -24,6 +25,7 @@ namespace Market_Otomasyonu.Data.SeedData
 					Username = "enesfevzi",
 					Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
 					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+				
 					Gender = "Erkek",
 					RoleID = 1,
 				}
@@ -38,10 +40,11 @@ namespace Market_Otomasyonu.Data.SeedData
 					Username = "ihsantapan",
 					Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
 					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
+					WorkUnit = WorkUnit.Depo,
 					Gender = "Erkek",
 					RoleID = 2,
 				}
-				);
+				); 
 			builder
 				.HasData(
 				new AppUser()
@@ -52,7 +55,8 @@ namespace Market_Otomasyonu.Data.SeedData
 					Username = "ebrucevik",
 					Password = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
 					ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
-					Gender = "Erkek",
+					WorkUnit = WorkUnit.Kasa,
+					Gender = "Kadın",
 					RoleID = 2,
 				}
 				);

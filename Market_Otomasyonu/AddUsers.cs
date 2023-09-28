@@ -36,7 +36,7 @@ namespace Market_Otomasyonu.UI
 		{
 			if (_userService.IsUserExist(txtAd.Text, txtSoyadı.Text))
 			{
-				MessageBox.Show("Böyle bir mail veritabanın mevcut");
+				MessageBox.Show("Böyle bir Kişi veritabanında mevcut");
 			}
 			if (Helper.CheckAreaAddUser(grpKullanıcıEkle.Controls))
 			{
@@ -68,7 +68,7 @@ namespace Market_Otomasyonu.UI
 					{
 						_userService.Add(user);
 						MessageBox.Show("Tebrikler Kayıt İşleminiz Başarılı");
-						Helper.Temizle(grpKullanıcıEkle.Controls);
+						Helper.Clean(grpKullanıcıEkle.Controls);
 
 					}
 					else

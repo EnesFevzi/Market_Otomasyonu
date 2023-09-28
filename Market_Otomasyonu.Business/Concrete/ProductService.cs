@@ -1,23 +1,62 @@
-﻿using Market_Otomasyonu.Data.Repository;
+﻿using Market_Otomasyonu.Business.Abstract;
+using Market_Otomasyonu.Data.Repository;
 using Market_Otomasyonu.Entity.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Market_Otomasyonu.Business.Concrete
 {
-	public class ProductService
+	public class ProductService :IProductService
 	{
-		private readonly ProductRepository _prdouctRepository;
+		private readonly ProductRepository _productRepository;
+
         public ProductService()
         {
-            _prdouctRepository = new ProductRepository();
+            _productRepository = new ProductRepository();
         }
-        public List<Product> GetAllProductWtihCategory()
+        public void Add(Product product)
 		{
-			return _prdouctRepository.GetAllProductWtihCategory();
+			_productRepository.Add(product);
 		}
+
+		public void Delete(Product product)
+		{
+			_productRepository.Delete(product);
+		}
+
+		public List<Product> GetAll()
+		{
+			return _productRepository.GetAll();
+		}
+
+		public List<Product> GetAllProductWtihCategory()
+		{
+			return _productRepository.GetAllProductWtihCategory();
+		}
+
+		public Product GetByFilter(Expression<Func<Product, bool>> filter)
+		{
+			return _productRepository.GetByFilter(filter);
+		}
+
+		public List<Product> GetByFilterList(Expression<Func<Product, bool>> filter)
+		{
+			return _productRepository.GetByFilterList(filter);
+		}
+
+		public Product GetByID(int id)
+		{
+			return _productRepository.GetByID(id);
+		}
+
+		public void Update(Product product)
+		{
+			_productRepository.Update(product);
+		}
+
 	}
 }

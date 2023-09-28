@@ -136,11 +136,12 @@
 			// 
 			// btnSiparisiTamamla
 			// 
+			btnSiparisiTamamla.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
 			btnSiparisiTamamla.Location = new Point(1002, 527);
 			btnSiparisiTamamla.Name = "btnSiparisiTamamla";
-			btnSiparisiTamamla.Size = new Size(226, 43);
+			btnSiparisiTamamla.Size = new Size(226, 122);
 			btnSiparisiTamamla.TabIndex = 9;
-			btnSiparisiTamamla.Text = "Siparişi Tamamla";
+			btnSiparisiTamamla.Text = "SİPARİŞİ TAMAMLA";
 			btnSiparisiTamamla.UseVisualStyleBackColor = true;
 			btnSiparisiTamamla.Click += btnSiparisiTamamla_Click;
 			// 

@@ -24,7 +24,7 @@ namespace Market_Otomasyonu.UI
 		}
 		private void AddCategory_Load(object sender, EventArgs e)
 		{
-			UrunleriDoldur(_categoryService.GetAllCategory());
+			GetAllCategories();
 		}
 		private void btnKaydet_Click(object sender, EventArgs e)
 		{
@@ -34,7 +34,7 @@ namespace Market_Otomasyonu.UI
 			}
 			else
 			{
-				if (Helper.AlanlariKontrolEt(grpKategoriEkle.Controls))
+				if (Helper.CheckArea(grpKategoriEkle.Controls))
 				{
 					MessageBox.Show("Lütfen tüm alanları doldurun.");
 					return;
@@ -46,19 +46,18 @@ namespace Market_Otomasyonu.UI
 				};
 				_categoryService.AddCategory(category);
 				MessageBox.Show("Kaydetme İşlemi Başarılı");
-				UrunleriDoldur(_categoryService.GetAllCategory());
-				Helper.Temizle(grpKategoriEkle.Controls);
+				GetAllCategories();
+				Helper.Clean(grpKategoriEkle.Controls);
 			}
-			
+
 		}
-		private void UrunleriDoldur(List<Category> categories)
+		private void GetAllCategories()
 		{
 			lstKategoriler.Items.Clear();
+			var categories = _categoryService.GetAllCategory();
 			foreach (var category in categories)
 			{
-				ListViewItem item = new ListViewItem();
-				item.Text = category.CategoryID.ToString();
-				item.SubItems.Add(category.Name);
+				ListViewItem item = new ListViewItem(category.Name);
 				item.Tag = category;
 				lstKategoriler.Items.Add(item);
 			}
@@ -74,8 +73,8 @@ namespace Market_Otomasyonu.UI
 				selectedCategory.Name = updatedCategoryName;
 				_categoryService.UpdateCategory(selectedCategory);
 				MessageBox.Show("Güncelleme işlemi Başarıyla Gerçekleşti");
-				UrunleriDoldur(_categoryService.GetAllCategory());
-				Helper.Temizle(grpKategoriEkle.Controls);
+				GetAllCategories();
+				Helper.Clean(grpKategoriEkle.Controls);
 			}
 			else
 			{
@@ -92,7 +91,7 @@ namespace Market_Otomasyonu.UI
 				{
 					_categoryService.DeleteCategory(selectedCategory);
 					MessageBox.Show("Silme işlemi Başarıyla Gerçekleşti");
-					UrunleriDoldur(_categoryService.GetAllCategory());
+					GetAllCategories();
 				}
 				else
 				{

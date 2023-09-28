@@ -24,7 +24,7 @@ namespace Market_Otomasyonu.UI
 
 		private void btnGirisYap_Click(object sender, EventArgs e)
 		{
-			if (Helper.AlanlariKontrolEt(grpGirisPaneli.Controls))
+			if (Helper.CheckArea(grpGirisPaneli.Controls))
 			{
 				MessageBox.Show("Lütfen tüm alanları doldurun.");
 				return;

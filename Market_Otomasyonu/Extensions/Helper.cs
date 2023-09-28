@@ -8,7 +8,7 @@ namespace Market_Otomasyonu.UI.Extensions
 {
 	public static class Helper
 	{
-		public static void Temizle(Control.ControlCollection controls)
+		public static void Clean(Control.ControlCollection controls)
 		{
 			foreach (Control control in controls)
 			{
@@ -51,15 +51,15 @@ namespace Market_Otomasyonu.UI.Extensions
 				}
 				else if (control is GroupBox groupBox)
 				{
-					Temizle(groupBox.Controls);
+					Clean(groupBox.Controls);
 				}
 				else if (control is FlowLayoutPanel panel)
 				{
-					Temizle(panel.Controls);
+					Clean(panel.Controls);
 				}
 			}
 		}
-		public static bool AlanlariKontrolEt(Control.ControlCollection controls)
+		public static bool CheckArea(Control.ControlCollection controls)
 		{
 			bool bosAlanVar = false;
 
@@ -103,7 +103,7 @@ namespace Market_Otomasyonu.UI.Extensions
 				}
 				else if (control is GroupBox groupBox)
 				{
-					if (AlanlariKontrolEt(groupBox.Controls))
+					if (CheckArea(groupBox.Controls))
 					{
 						bosAlanVar = true;
 						break;

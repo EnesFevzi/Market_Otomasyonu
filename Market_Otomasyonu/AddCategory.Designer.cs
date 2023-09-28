@@ -35,7 +35,6 @@
 			btnGuncelle = new Button();
 			btnSil = new Button();
 			lstKategoriler = new ListView();
-			columnHeader1 = new ColumnHeader();
 			columnHeader2 = new ColumnHeader();
 			grpKategoriEkle.SuspendLayout();
 			SuspendLayout();
@@ -44,12 +43,9 @@
 			// 
 			grpKategoriEkle.Controls.Add(label1);
 			grpKategoriEkle.Controls.Add(txtKategoriAdi);
-			grpKategoriEkle.Controls.Add(btnKaydet);
-			grpKategoriEkle.Controls.Add(btnGuncelle);
-			grpKategoriEkle.Controls.Add(btnSil);
 			grpKategoriEkle.Location = new Point(3, 7);
 			grpKategoriEkle.Name = "grpKategoriEkle";
-			grpKategoriEkle.Size = new Size(309, 119);
+			grpKategoriEkle.Size = new Size(456, 119);
 			grpKategoriEkle.TabIndex = 11;
 			grpKategoriEkle.TabStop = false;
 			grpKategoriEkle.Text = "Kategori Ekleme Sayfası";
@@ -73,9 +69,9 @@
 			// 
 			// btnKaydet
 			// 
-			btnKaydet.Location = new Point(58, 78);
+			btnKaydet.Location = new Point(12, 132);
 			btnKaydet.Name = "btnKaydet";
-			btnKaydet.Size = new Size(75, 23);
+			btnKaydet.Size = new Size(300, 46);
 			btnKaydet.TabIndex = 9;
 			btnKaydet.Text = "Kaydet";
 			btnKaydet.UseVisualStyleBackColor = true;
@@ -83,9 +79,9 @@
 			// 
 			// btnGuncelle
 			// 
-			btnGuncelle.Location = new Point(139, 78);
+			btnGuncelle.Location = new Point(12, 184);
 			btnGuncelle.Name = "btnGuncelle";
-			btnGuncelle.Size = new Size(75, 23);
+			btnGuncelle.Size = new Size(300, 46);
 			btnGuncelle.TabIndex = 8;
 			btnGuncelle.Text = "Güncelle";
 			btnGuncelle.UseVisualStyleBackColor = true;
@@ -93,9 +89,9 @@
 			// 
 			// btnSil
 			// 
-			btnSil.Location = new Point(220, 78);
+			btnSil.Location = new Point(318, 132);
 			btnSil.Name = "btnSil";
-			btnSil.Size = new Size(75, 23);
+			btnSil.Size = new Size(149, 98);
 			btnSil.TabIndex = 7;
 			btnSil.Text = "Sil";
 			btnSil.UseVisualStyleBackColor = true;
@@ -103,34 +99,32 @@
 			// 
 			// lstKategoriler
 			// 
-			lstKategoriler.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+			lstKategoriler.Columns.AddRange(new ColumnHeader[] { columnHeader2 });
 			lstKategoriler.FullRowSelect = true;
 			lstKategoriler.GridLines = true;
-			lstKategoriler.Location = new Point(3, 132);
+			lstKategoriler.Location = new Point(12, 264);
 			lstKategoriler.Name = "lstKategoriler";
-			lstKategoriler.Size = new Size(309, 240);
+			lstKategoriler.Size = new Size(447, 240);
 			lstKategoriler.TabIndex = 10;
 			lstKategoriler.UseCompatibleStateImageBehavior = false;
 			lstKategoriler.View = View.Details;
 			lstKategoriler.SelectedIndexChanged += lstKategoriler_SelectedIndexChanged;
 			// 
-			// columnHeader1
-			// 
-			columnHeader1.Text = "ID";
-			columnHeader1.Width = 50;
-			// 
 			// columnHeader2
 			// 
 			columnHeader2.Text = "Kategori Adı";
-			columnHeader2.Width = 250;
+			columnHeader2.Width = 350;
 			// 
 			// AddCategory
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(323, 378);
+			ClientSize = new Size(471, 516);
 			Controls.Add(grpKategoriEkle);
 			Controls.Add(lstKategoriler);
+			Controls.Add(btnKaydet);
+			Controls.Add(btnGuncelle);
+			Controls.Add(btnSil);
 			Name = "AddCategory";
 			Text = "AddCategory";
 			Load += AddCategory_Load;
@@ -148,7 +142,6 @@
 		private Button btnGuncelle;
 		private Button btnSil;
 		private ListView lstKategoriler;
-		private ColumnHeader columnHeader1;
 		private ColumnHeader columnHeader2;
 	}
 }

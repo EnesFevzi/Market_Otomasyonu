@@ -28,6 +28,7 @@ namespace Market_Otomasyonu.Business.Concrete
 		}
 		public string AuthenticateUser(string username, string password)
 		{
+
 			return _appUserRepository.UserAuthenticationResult(username, password);
 		}
 		public bool IsUserExist(string name, string surname)

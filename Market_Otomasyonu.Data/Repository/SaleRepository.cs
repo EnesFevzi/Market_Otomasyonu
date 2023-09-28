@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Market_Otomasyonu.Data.Repository
 {
-	public class SaleRepository : IDisposable
+	public class SaleRepository
 	{
 		protected readonly AppDbContext _context;
         public SaleRepository()
@@ -21,15 +21,7 @@ namespace Market_Otomasyonu.Data.Repository
 			_context.Sales.Add(sale);
 			_context.SaveChanges();
 		}
-		public void Add2(List<Sale> sales)
-		{
-			foreach (var sale in sales)
-			{
-				_context.Sales.Add(sale);
-			}
 
-			_context.SaveChanges();
-		}
 
 		public void Update(Sale sale) 
 		{ 
@@ -63,9 +55,6 @@ namespace Market_Otomasyonu.Data.Repository
 			return _context.Set<Sale>().Where(filter).ToList();
 		}
 
-		public void Dispose()
-		{
-			throw new NotImplementedException();
-		}
+
 	}
 }

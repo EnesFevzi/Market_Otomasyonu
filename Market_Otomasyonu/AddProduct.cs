@@ -1,3 +1,5 @@
+using Market_Otomasyonu.Business.Abstract;
+using Market_Otomasyonu.Business.Concrete;
 using Market_Otomasyonu.Data.Repository;
 using Market_Otomasyonu.Entity.Entities;
 using Market_Otomasyonu.Entity.Enums;
@@ -7,12 +9,14 @@ namespace Market_Otomasyonu
 {
 	public partial class AddProduct : Form
 	{
-		private readonly ProductRepository _productRepository;
-		private readonly CategoryRepository _categoryRepository;
+
+		private readonly ProductService _productService;
+		private readonly CategoryService _categoryService;
+
 		public AddProduct()
 		{
-			_categoryRepository = new CategoryRepository();
-			_productRepository = new ProductRepository();
+			_productService = new ProductService();
+			_categoryService = new CategoryService();
 			InitializeComponent();
 		}
 		private void AddProduct_Load(object sender, EventArgs e)
@@ -45,36 +49,33 @@ namespace Market_Otomasyonu
 					product.Brand = txtMarka.Text;
 				}
 				product.Unit = (Unit)cmbBirim.SelectedItem;
-				product.SalePrice = nmrAlisFiyati.Value;
-				product.PurchasePrice = nmrSatisFiyati.Value;
 				product.TaxRatio = nmrVergiOrani.Value;
+				product.PurchasePrice = nmrAlisFiyati.Value;
+				product.SalePrice = nmrSatisFiyati.Value + ((product.TaxRatio * nmrSatisFiyati.Value)/100);
 				product.Quantity = nmrPakettekiUrunSayisi.Value;
 				product.ExpirationDate = dtSonKullanmaTarihi.Value;
 				product.Stock = (int)nmrStokAdedi.Value;
 				product.IsContinued = true;
 
-				_productRepository.Add(product);
+				_productService.Add(product);
 				MessageBox.Show("Ýþlem baþarýlý!");
 				GetAllProducts();
-				Helper.Temizle(grpUrunEkle.Controls);
+				Helper.Clean(grpUrunEkle.Controls);
 			}
 		}
 
-		private void grpUrunEkle_Enter(object sender, EventArgs e)
-		{
 
-		}
 		private void GetAllProducts()
 		{
 			lstUrunler.Items.Clear();
 
-			var products = _productRepository.GetAll();
+			var products = _productService.GetAll();
 
 			foreach (var item in products)
 			{
 				ListViewItem lv = new ListViewItem(item.ProductID.ToString());
 				lv.SubItems.Add(item.Name);
-				Category category = _categoryRepository.GetByID(item.CategoryID);
+				Category category = _categoryService.GetByIDCategory(item.CategoryID);
 				if (category != null)
 				{
 					lv.SubItems.Add(category.Name);
@@ -86,7 +87,6 @@ namespace Market_Otomasyonu
 				lv.SubItems.Add(item.PurchasePrice.ToString());
 				lv.SubItems.Add(item.TaxRatio.ToString());
 				lv.SubItems.Add(item.Quantity.ToString());
-
 				lv.SubItems.Add(item.Stock.ToString());
 				lv.SubItems.Add(item.ExpirationDate.ToString());
 				lv.SubItems.Add(item.IsContinued.ToString());
@@ -96,7 +96,7 @@ namespace Market_Otomasyonu
 		}
 		private void AddCategoriesToCombobox()
 		{
-			var categories = _categoryRepository.GetAll();
+			var categories = _categoryService.GetAllCategory();
 
 			foreach (var item in categories)
 			{
@@ -116,7 +116,7 @@ namespace Market_Otomasyonu
 			if (lstUrunler.SelectedItems.Count > 0)
 			{
 				selectedProduct = (Product)lstUrunler.SelectedItems[0].Tag; ;
-				Category category = _categoryRepository.GetByID(selectedProduct.CategoryID);
+				Category category = _categoryService.GetByIDCategory(selectedProduct.CategoryID);
 				txtUrunAdi.Text = selectedProduct.Name;
 				cmbKategori.SelectedItem = category;
 				txtMarka.Text = selectedProduct.Brand;
@@ -149,10 +149,10 @@ namespace Market_Otomasyonu
 				selectedProduct.Quantity = nmrPakettekiUrunSayisi.Value;
 				selectedProduct.ExpirationDate = dtSonKullanmaTarihi.Value;
 
-				_productRepository.Update(selectedProduct);
+				_productService.Update(selectedProduct);
 				MessageBox.Show("Ýþlem baþarýlý!");
 				GetAllProducts();
-				Helper.Temizle(grpUrunEkle.Controls);
+				Helper.Clean(grpUrunEkle.Controls);
 			}
 			else
 			{
@@ -167,7 +167,7 @@ namespace Market_Otomasyonu
 
 				if (selectedProduct != null)
 				{
-					_productRepository.Delete(selectedProduct);
+					_productService.Delete(selectedProduct);
 					MessageBox.Show("Silme iþlemi Baþarýyla Gerçekleþti");
 					GetAllProducts();
 				}
@@ -178,6 +178,5 @@ namespace Market_Otomasyonu
 			}
 		}
 
-		
 	}
 }

@@ -302,7 +302,7 @@
 			grpUrunEkle.TabIndex = 6;
 			grpUrunEkle.TabStop = false;
 			grpUrunEkle.Text = "Ürün Ekleme Sayfası";
-			grpUrunEkle.Enter += grpUrunEkle_Enter;
+
 			// 
 			// dtSonKullanmaTarihi
 			// 

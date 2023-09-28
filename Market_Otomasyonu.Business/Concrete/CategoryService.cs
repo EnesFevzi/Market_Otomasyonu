@@ -12,6 +12,7 @@ namespace Market_Otomasyonu.Business.Concrete
 		{
 			_categoryRepository = new CategoryRepository();
 		}
+
 		public void AddCategory(Category category)
 		{
 			_categoryRepository.Add(category);
