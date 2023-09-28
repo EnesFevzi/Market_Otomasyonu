@@ -185,6 +185,7 @@
 			Controls.Add(grpGirisPaneli);
 			Name = "LoginPage";
 			Text = "LoginPage";
+			Load += LoginPage_Load;
 			grpGirisPaneli.ResumeLayout(false);
 			grpGirisPaneli.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

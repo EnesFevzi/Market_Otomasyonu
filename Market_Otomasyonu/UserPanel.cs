@@ -20,14 +20,12 @@ namespace Market_Otomasyonu.UI
 			if (_user.RoleID == role.RoleID)
 			{
 				btnKullaniciPaneli.Visible = true;
-				this.Height = 621;
-				this.Width = 389;
+
 			}
 			else
 			{
 				btnKullaniciPaneli.Visible = false;
-				this.Height = 463;
-				this.Width = 389;
+
 			}
 		}
 		private void btnRapor_Click(object sender, EventArgs e)
@@ -67,6 +65,19 @@ namespace Market_Otomasyonu.UI
 			UserPanelSetting userPanelSetting = new UserPanelSetting();
 			this.Hide();
 			userPanelSetting.ShowDialog();
+		}
+
+		private void btnUygulamayiKapat_Click(object sender, EventArgs e)
+		{
+			DialogResult dr = MessageBox.Show("Uygulama Kapatılacak Emin Misiniz ?", "UYARI", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+			if (dr == DialogResult.Yes)
+			{
+				Application.Exit();
+			}
+			else
+			{
+				return;
+			}
 		}
 	}
 }

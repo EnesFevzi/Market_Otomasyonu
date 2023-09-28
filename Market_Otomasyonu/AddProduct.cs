@@ -183,12 +183,16 @@ namespace Market_Otomasyonu
 		{
 			btnGuncelle.Enabled = false;
 			btnSil.Enabled = false;
+			btnSatýsaKapat.Enabled = false;
+			btnSatýþaAç.Enabled = false;
 			btnKaydet.Enabled = true;
 		}
 		private void EnableButton()
 		{
 			btnGuncelle.Enabled = true;
 			btnSil.Enabled = true;
+			btnSatýsaKapat.Enabled = true;
+			btnSatýþaAç.Enabled = true;
 			btnKaydet.Enabled = false;
 		}
 

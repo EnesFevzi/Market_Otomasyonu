@@ -102,8 +102,8 @@
 			// 
 			// btnKayitOlustur
 			// 
-			btnKayitOlustur.BackColor = Color.LightGreen;
-			btnKayitOlustur.Font = new Font("Calibri", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
+			btnKayitOlustur.BackColor = Color.LawnGreen;
+			btnKayitOlustur.Font = new Font("Calibri", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
 			btnKayitOlustur.Location = new Point(12, 496);
 			btnKayitOlustur.Name = "btnKayitOlustur";
 			btnKayitOlustur.Size = new Size(334, 49);
