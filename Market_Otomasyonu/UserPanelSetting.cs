@@ -30,8 +30,7 @@ namespace Market_Otomasyonu.UI
 		{
 			AddUserToList();
 			AddWorkUnitsToCombobox();
-			btnGuncelle.Enabled = false;
-			btnSil.Enabled = false;
+			DisableButton();
 		}
 		private void AddUserToList()
 		{
@@ -58,8 +57,7 @@ namespace Market_Otomasyonu.UI
 				txtSoyad.Text = selectedUser.Surname;
 				txtKullanıcıAdı.Text = selectedUser.Username;
 				cmbCalismaBirimi.SelectedItem = selectedUser.WorkUnit;
-				btnGuncelle.Enabled = true;
-				btnSil.Enabled = true;
+				EnableButton();
 			}
 		}
 		private void AddWorkUnitsToCombobox()
@@ -84,6 +82,8 @@ namespace Market_Otomasyonu.UI
 				MessageBox.Show("İşlem başarılı!");
 				AddUserToList();
 				Helper.Clean(grpKullaniciBilgileri.Controls);
+				DisableButton();
+
 			}
 			else
 			{
@@ -95,14 +95,18 @@ namespace Market_Otomasyonu.UI
 		{
 			_appUserService.AppUserStatusChangeWorking(selectedUser.UserID);
 			AddUserToList();
+			MessageBox.Show("Kullanıcı Durumu Çalışıyor Olarak Atandı...");
 			Helper.Clean(grpKullaniciBilgileri.Controls);
+			DisableButton();
 		}
 
 		private void btnPasifYap_Click(object sender, EventArgs e)
 		{
 			_appUserService.AppUserStatusChangeNotWorking(selectedUser.UserID);
+			MessageBox.Show("Kullanıcı Durumu Çalışmıyor Olarak Atandı...");
 			AddUserToList();
 			Helper.Clean(grpKullaniciBilgileri.Controls);
+			DisableButton();
 		}
 
 		private void btnSil_Click(object sender, EventArgs e)
@@ -115,12 +119,35 @@ namespace Market_Otomasyonu.UI
 					_appUserService.DeleteUser(selectedUser);
 					MessageBox.Show("Silme işlemi Başarıyla Gerçekleşti");
 					AddUserToList();
+					DisableButton();
 				}
 				else
 				{
 					MessageBox.Show("İlgili Ürün Bulunamadı");
 				}
 			}
+		}
+		private void DisableButton()
+		{
+			btnGuncelle.Enabled = false;
+			btnSil.Enabled = false;
+			btnPasifYap.Enabled = false;
+			btnAktifYap.Enabled = false;
+
+		}
+		private void EnableButton()
+		{
+			btnGuncelle.Enabled = true;
+			btnSil.Enabled = true;
+			btnPasifYap.Enabled = true;
+			btnAktifYap.Enabled = true;
+		}
+
+		private void btnKullaniciEkle_Click(object sender, EventArgs e)
+		{
+			AddUsers addUsers = new AddUsers();
+			this.Hide();
+			addUsers.ShowDialog();
 		}
 	}
 }

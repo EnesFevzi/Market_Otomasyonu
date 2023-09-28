@@ -26,7 +26,7 @@ namespace Market_Otomasyonu.UI.Extensions
 				}
 				else if (control is ComboBox comboBox)
 				{
-					comboBox.SelectedIndex = 0;
+					comboBox.SelectedIndex = -1;
 				}
 				else if (control is CheckBox checkBox)
 				{
@@ -42,7 +42,7 @@ namespace Market_Otomasyonu.UI.Extensions
 				}
 				else if (control is NumericUpDown nud)
 				{
-					nud.Value = 1;
+					nud.Value = 0;
 				}
 
 				else if (control is ListBox list)

@@ -25,6 +25,7 @@ namespace Market_Otomasyonu.UI
 		private void AddCategory_Load(object sender, EventArgs e)
 		{
 			GetAllCategories();
+			DisableButton();
 		}
 		private void btnKaydet_Click(object sender, EventArgs e)
 		{
@@ -75,6 +76,7 @@ namespace Market_Otomasyonu.UI
 				MessageBox.Show("Güncelleme işlemi Başarıyla Gerçekleşti");
 				GetAllCategories();
 				Helper.Clean(grpKategoriEkle.Controls);
+				DisableButton();
 			}
 			else
 			{
@@ -92,6 +94,7 @@ namespace Market_Otomasyonu.UI
 					_categoryService.DeleteCategory(selectedCategory);
 					MessageBox.Show("Silme işlemi Başarıyla Gerçekleşti");
 					GetAllCategories();
+					DisableButton();
 				}
 				else
 				{
@@ -106,7 +109,20 @@ namespace Market_Otomasyonu.UI
 			{
 				selectedCategory = (Category)lstKategoriler.SelectedItems[0].Tag;
 				txtKategoriAdi.Text = selectedCategory.Name;
+				EnableButton();
 			}
+		}
+		private void DisableButton()
+		{
+			btnGuncelle.Enabled = false;
+			btnSil.Enabled = false;
+			btnKaydet.Enabled = true;
+		}
+		private void EnableButton()
+		{
+			btnGuncelle.Enabled = true;
+			btnSil.Enabled = true;
+			btnKaydet.Enabled = false;
 		}
 	}
 }

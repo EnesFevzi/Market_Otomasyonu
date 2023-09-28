@@ -26,10 +26,10 @@ namespace Market_Otomasyonu.Entity.Entities
         public int Stock { get; set; }
         public DateTime ExpirationDate { get; set; }
 
-        public bool IsContinued { get; set; }
+        public string IsContinued { get; set; } = "Satışa Açık";
 
-        //Navigation Prop
-        public int CategoryID { get; set; }
+		//Navigation Prop
+		public int CategoryID { get; set; }
         public Category Category { get; set; }
 
         public ICollection<ShoppingCart> ShoppingCarts { get; set;}

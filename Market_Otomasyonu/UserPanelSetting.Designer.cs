@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPanelSetting));
 			lstKisiler = new ListView();
 			columnHeader1 = new ColumnHeader();
 			columnHeader2 = new ColumnHeader();
@@ -39,14 +40,15 @@
 			cmbCalismaBirimi = new ComboBox();
 			txtAd = new TextBox();
 			label4 = new Label();
+			btnPasifYap = new Button();
 			txtKullanıcıAdı = new TextBox();
 			txtSoyad = new TextBox();
 			label1 = new Label();
 			label10 = new Label();
-			label11 = new Label();
-			btnPasifYap = new Button();
-			btnGuncelle = new Button();
 			label2 = new Label();
+			label11 = new Label();
+			btnGuncelle = new Button();
+			btnKullaniciEkle = new Button();
 			grpKullaniciBilgileri.SuspendLayout();
 			SuspendLayout();
 			// 
@@ -55,7 +57,7 @@
 			lstKisiler.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
 			lstKisiler.FullRowSelect = true;
 			lstKisiler.GridLines = true;
-			lstKisiler.Location = new Point(12, 226);
+			lstKisiler.Location = new Point(12, 281);
 			lstKisiler.Name = "lstKisiler";
 			lstKisiler.Size = new Size(612, 298);
 			lstKisiler.TabIndex = 0;
@@ -87,9 +89,9 @@
 			// 
 			btnSil.BackColor = Color.Red;
 			btnSil.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point);
-			btnSil.Location = new Point(465, 186);
+			btnSil.Location = new Point(381, 221);
 			btnSil.Name = "btnSil";
-			btnSil.Size = new Size(147, 36);
+			btnSil.Size = new Size(60, 36);
 			btnSil.TabIndex = 5;
 			btnSil.Text = "Sil";
 			btnSil.UseVisualStyleBackColor = false;
@@ -99,7 +101,7 @@
 			// 
 			btnAktifYap.BackColor = Color.Orange;
 			btnAktifYap.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
-			btnAktifYap.Location = new Point(222, 109);
+			btnAktifYap.Location = new Point(218, 41);
 			btnAktifYap.Name = "btnAktifYap";
 			btnAktifYap.Size = new Size(103, 37);
 			btnAktifYap.TabIndex = 6;
@@ -111,7 +113,9 @@
 			// 
 			grpKullaniciBilgileri.Controls.Add(cmbCalismaBirimi);
 			grpKullaniciBilgileri.Controls.Add(txtAd);
+			grpKullaniciBilgileri.Controls.Add(btnSil);
 			grpKullaniciBilgileri.Controls.Add(label4);
+			grpKullaniciBilgileri.Controls.Add(btnGuncelle);
 			grpKullaniciBilgileri.Controls.Add(btnPasifYap);
 			grpKullaniciBilgileri.Controls.Add(txtKullanıcıAdı);
 			grpKullaniciBilgileri.Controls.Add(btnAktifYap);
@@ -122,7 +126,7 @@
 			grpKullaniciBilgileri.Controls.Add(label11);
 			grpKullaniciBilgileri.Location = new Point(12, 12);
 			grpKullaniciBilgileri.Name = "grpKullaniciBilgileri";
-			grpKullaniciBilgileri.Size = new Size(447, 208);
+			grpKullaniciBilgileri.Size = new Size(447, 263);
 			grpKullaniciBilgileri.TabIndex = 10;
 			grpKullaniciBilgileri.TabStop = false;
 			grpKullaniciBilgileri.Text = "Bilgileri Güncelle";
@@ -130,7 +134,7 @@
 			// cmbCalismaBirimi
 			// 
 			cmbCalismaBirimi.FormattingEnabled = true;
-			cmbCalismaBirimi.Location = new Point(222, 41);
+			cmbCalismaBirimi.Location = new Point(6, 196);
 			cmbCalismaBirimi.Name = "cmbCalismaBirimi";
 			cmbCalismaBirimi.Size = new Size(182, 23);
 			cmbCalismaBirimi.TabIndex = 12;
@@ -151,6 +155,18 @@
 			label4.Size = new Size(30, 19);
 			label4.TabIndex = 9;
 			label4.Text = "Adı";
+			// 
+			// btnPasifYap
+			// 
+			btnPasifYap.BackColor = Color.Chartreuse;
+			btnPasifYap.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			btnPasifYap.Location = new Point(327, 41);
+			btnPasifYap.Name = "btnPasifYap";
+			btnPasifYap.Size = new Size(103, 37);
+			btnPasifYap.TabIndex = 6;
+			btnPasifYap.Text = "Pasif Yap";
+			btnPasifYap.UseVisualStyleBackColor = false;
+			btnPasifYap.Click += btnPasifYap_Click;
 			// 
 			// txtKullanıcıAdı
 			// 
@@ -186,58 +202,58 @@
 			label10.TabIndex = 9;
 			label10.Text = "Soyadı";
 			// 
-			// label11
-			// 
-			label11.AutoSize = true;
-			label11.Font = new Font("Calibri", 12F, FontStyle.Italic, GraphicsUnit.Point);
-			label11.Location = new Point(222, 19);
-			label11.Name = "label11";
-			label11.Size = new Size(103, 19);
-			label11.TabIndex = 8;
-			label11.Text = "Çalışma Birimi";
-			// 
-			// btnPasifYap
-			// 
-			btnPasifYap.BackColor = Color.Chartreuse;
-			btnPasifYap.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
-			btnPasifYap.Location = new Point(331, 109);
-			btnPasifYap.Name = "btnPasifYap";
-			btnPasifYap.Size = new Size(103, 37);
-			btnPasifYap.TabIndex = 6;
-			btnPasifYap.Text = "Pasif Yap";
-			btnPasifYap.UseVisualStyleBackColor = false;
-			btnPasifYap.Click += btnPasifYap_Click;
-			// 
-			// btnGuncelle
-			// 
-			btnGuncelle.BackColor = Color.BurlyWood;
-			btnGuncelle.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point);
-			btnGuncelle.Location = new Point(465, 134);
-			btnGuncelle.Name = "btnGuncelle";
-			btnGuncelle.Size = new Size(147, 46);
-			btnGuncelle.TabIndex = 6;
-			btnGuncelle.Text = "Güncelle";
-			btnGuncelle.UseVisualStyleBackColor = false;
-			btnGuncelle.Click += btnGuncelle_Click;
-			// 
 			// label2
 			// 
 			label2.AutoSize = true;
 			label2.Font = new Font("Calibri", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
-			label2.Location = new Point(222, 90);
+			label2.Location = new Point(218, 22);
 			label2.Name = "label2";
 			label2.Size = new Size(208, 15);
 			label2.TabIndex = 8;
 			label2.Text = "Çalışanın Durumunu Değiştirebilirsiniz";
 			// 
+			// label11
+			// 
+			label11.AutoSize = true;
+			label11.Font = new Font("Calibri", 12F, FontStyle.Italic, GraphicsUnit.Point);
+			label11.Location = new Point(6, 174);
+			label11.Name = "label11";
+			label11.Size = new Size(103, 19);
+			label11.TabIndex = 8;
+			label11.Text = "Çalışma Birimi";
+			// 
+			// btnGuncelle
+			// 
+			btnGuncelle.BackColor = Color.BurlyWood;
+			btnGuncelle.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point);
+			btnGuncelle.Location = new Point(228, 221);
+			btnGuncelle.Name = "btnGuncelle";
+			btnGuncelle.Size = new Size(147, 36);
+			btnGuncelle.TabIndex = 6;
+			btnGuncelle.Text = "Güncelle";
+			btnGuncelle.UseVisualStyleBackColor = false;
+			btnGuncelle.Click += btnGuncelle_Click;
+			// 
+			// btnKullaniciEkle
+			// 
+			btnKullaniciEkle.BackColor = Color.Transparent;
+			btnKullaniciEkle.BackgroundImage = (Image)resources.GetObject("btnKullaniciEkle.BackgroundImage");
+			btnKullaniciEkle.BackgroundImageLayout = ImageLayout.Stretch;
+			btnKullaniciEkle.Font = new Font("Calibri", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
+			btnKullaniciEkle.Location = new Point(549, 12);
+			btnKullaniciEkle.Name = "btnKullaniciEkle";
+			btnKullaniciEkle.Size = new Size(65, 64);
+			btnKullaniciEkle.TabIndex = 12;
+			btnKullaniciEkle.UseVisualStyleBackColor = false;
+			btnKullaniciEkle.Click += btnKullaniciEkle_Click;
+			// 
 			// UserPanelSetting
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(626, 532);
+			ClientSize = new Size(626, 587);
+			Controls.Add(btnKullaniciEkle);
 			Controls.Add(grpKullaniciBilgileri);
-			Controls.Add(btnSil);
-			Controls.Add(btnGuncelle);
 			Controls.Add(lstKisiler);
 			Name = "UserPanelSetting";
 			Text = "UserPanelSetting";
@@ -268,5 +284,6 @@
 		private Label label10;
 		private Label label11;
 		private Label label2;
+		private Button btnKullaniciEkle;
 	}
 }

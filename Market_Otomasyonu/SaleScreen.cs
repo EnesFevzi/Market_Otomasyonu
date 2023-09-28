@@ -42,7 +42,7 @@ namespace Market_Otomasyonu.UI
 		private void LoadProduct(string searchword = "")
 		{
 			lstArananUrunler.Items.Clear();
-			var products = _productService.GetAll();
+			var products = _productService.GetAllProductWtihOpenSale();
 
 			foreach (var product in products)
 			{
@@ -194,7 +194,7 @@ namespace Market_Otomasyonu.UI
 				_saleService.Add(sale);
 				MessageBox.Show("Kaydetme İşlemi Başarılı");
 			}
-			
+
 
 		}
 
@@ -214,7 +214,7 @@ namespace Market_Otomasyonu.UI
 						lblToplamSatisAdedi.Text = totalSalesQuantity.ToString("0.00");
 						lblToplamFiyat.Text = totalSalesPrice.ToString("0.00");
 					}
-				
+
 					lstSiparisler.Items.RemoveAt(selectedProduct);
 					MessageBox.Show("Silme işleminiz gerçekleşti");
 				}

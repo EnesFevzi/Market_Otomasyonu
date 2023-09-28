@@ -67,6 +67,9 @@
 			nmrAlisFiyati = new NumericUpDown();
 			nmrPakettekiUrunSayisi = new NumericUpDown();
 			txtMarka = new TextBox();
+			btnSatısaKapat = new Button();
+			btnSatışaAç = new Button();
+			label12 = new Label();
 			((System.ComponentModel.ISupportInitialize)nmrBirimFiyat).BeginInit();
 			((System.ComponentModel.ISupportInitialize)nmrStokAdedi).BeginInit();
 			grpUrunEkle.SuspendLayout();
@@ -302,7 +305,6 @@
 			grpUrunEkle.TabIndex = 6;
 			grpUrunEkle.TabStop = false;
 			grpUrunEkle.Text = "Ürün Ekleme Sayfası";
-
 			// 
 			// dtSonKullanmaTarihi
 			// 
@@ -406,11 +408,48 @@
 			txtMarka.Size = new Size(188, 23);
 			txtMarka.TabIndex = 1;
 			// 
+			// btnSatısaKapat
+			// 
+			btnSatısaKapat.BackColor = Color.Chartreuse;
+			btnSatısaKapat.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSatısaKapat.Location = new Point(1164, 33);
+			btnSatısaKapat.Name = "btnSatısaKapat";
+			btnSatısaKapat.Size = new Size(103, 37);
+			btnSatısaKapat.TabIndex = 9;
+			btnSatısaKapat.Text = "Satışa Kapat";
+			btnSatısaKapat.UseVisualStyleBackColor = false;
+			btnSatısaKapat.Click += btnSatısaKapat_Click;
+			// 
+			// btnSatışaAç
+			// 
+			btnSatışaAç.BackColor = Color.Orange;
+			btnSatışaAç.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSatışaAç.Location = new Point(1055, 33);
+			btnSatışaAç.Name = "btnSatışaAç";
+			btnSatışaAç.Size = new Size(103, 37);
+			btnSatışaAç.TabIndex = 10;
+			btnSatışaAç.Text = "Satışa Aç";
+			btnSatışaAç.UseVisualStyleBackColor = false;
+			btnSatışaAç.Click += btnSatışaAç_Click;
+			// 
+			// label12
+			// 
+			label12.AutoSize = true;
+			label12.Font = new Font("Calibri", 9.75F, FontStyle.Italic, GraphicsUnit.Point);
+			label12.Location = new Point(1055, 14);
+			label12.Name = "label12";
+			label12.Size = new Size(187, 15);
+			label12.TabIndex = 11;
+			label12.Text = "Satış  Durumunu Değiştirebilirsiniz";
+			// 
 			// AddProduct
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1279, 620);
+			Controls.Add(btnSatısaKapat);
+			Controls.Add(btnSatışaAç);
+			Controls.Add(label12);
 			Controls.Add(grpUrunEkle);
 			Controls.Add(lstUrunler);
 			Controls.Add(btnSil);
@@ -428,6 +467,7 @@
 			((System.ComponentModel.ISupportInitialize)nmrAlisFiyati).EndInit();
 			((System.ComponentModel.ISupportInitialize)nmrPakettekiUrunSayisi).EndInit();
 			ResumeLayout(false);
+			PerformLayout();
 		}
 
 		#endregion
@@ -471,5 +511,8 @@
 		private ColumnHeader columnHeader12;
 		private Label label11;
 		private TextBox txtMarka;
+		private Button btnSatısaKapat;
+		private Button btnSatışaAç;
+		private Label label12;
 	}
 }

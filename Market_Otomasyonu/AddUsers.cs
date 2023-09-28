@@ -77,6 +77,7 @@ namespace Market_Otomasyonu.UI
 						{
 
 							MessageBox.Show(item.ErrorMessage, "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							return;
 
 						}
 					}

@@ -22,10 +22,9 @@ namespace Market_Otomasyonu.Entity.Entities
 		public PaymentMethod PaymentMethod { get; set; }
 		public DateTime SaleDate { get; set; }
 	
-		//public int InvoıceID { get; set; }
 
 		//Navigation Prop
-		//public List<Product> Products { get; set; }
+
 		public ICollection<ShoppingCart> ShoppingCarts { get; set; }
 	}
 }

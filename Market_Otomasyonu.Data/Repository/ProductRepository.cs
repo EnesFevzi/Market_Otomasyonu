@@ -58,5 +58,18 @@ namespace Market_Otomasyonu.Data.Repository
 		{
 			return _context.Set<Product>().Where(filter).ToList();
 		}
+		public void ProductStatusChangeOpenSale(int id)
+		{
+			var values = _context.Products.Find(id);
+			values.IsContinued = "Satışa Açık";
+			_context.SaveChanges();
+		}
+
+		public void ProductStatusChangeCloseSale(int id)
+		{
+			var values = _context.Products.Find(id);
+			values.IsContinued = "Satışa Kapalı";
+			_context.SaveChanges();
+		}
 	}
 }

@@ -38,6 +38,11 @@ namespace Market_Otomasyonu.Business.Concrete
 			return _productRepository.GetAllProductWtihCategory();
 		}
 
+		public List<Product> GetAllProductWtihOpenSale()
+		{
+			return _productRepository.GetByFilterList(x => x.IsContinued == "Satışa Açık");
+		}
+
 		public Product GetByFilter(Expression<Func<Product, bool>> filter)
 		{
 			return _productRepository.GetByFilter(filter);
@@ -51,6 +56,16 @@ namespace Market_Otomasyonu.Business.Concrete
 		public Product GetByID(int id)
 		{
 			return _productRepository.GetByID(id);
+		}
+
+		public void ProductStatusChangeCloseSale(int id)
+		{
+			_productRepository.ProductStatusChangeCloseSale(id);
+		}
+
+		public void ProductStatusChangeOpenSale(int id)
+		{
+			_productRepository.ProductStatusChangeOpenSale(id);
 		}
 
 		public void Update(Product product)

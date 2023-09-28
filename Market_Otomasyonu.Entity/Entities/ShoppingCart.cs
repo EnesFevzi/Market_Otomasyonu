@@ -17,7 +17,6 @@ namespace Market_Otomasyonu.Entity.Entities
 		public decimal Quantity { get; set; }
 
 		// Navigation Prop
-		// Alışveriş sepetinin bir ürünü (Product) ve bir satışı (Sale) ilişkilendirdiğini temsil ediyor.
 		public int ProductID { get; set; }
 		public Product Product { get; set; }
 

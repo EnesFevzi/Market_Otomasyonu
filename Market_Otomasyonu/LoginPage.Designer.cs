@@ -30,6 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginPage));
 			grpGirisPaneli = new GroupBox();
+			pictureBox1 = new PictureBox();
 			button3 = new Button();
 			button2 = new Button();
 			button1 = new Button();
@@ -39,11 +40,14 @@
 			txtSifre = new TextBox();
 			txtKullaniciAdi = new TextBox();
 			btnGirisYap = new Button();
+			btnUygulamayiKapat = new Button();
 			grpGirisPaneli.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			SuspendLayout();
 			// 
 			// grpGirisPaneli
 			// 
+			grpGirisPaneli.Controls.Add(pictureBox1);
 			grpGirisPaneli.Controls.Add(button3);
 			grpGirisPaneli.Controls.Add(button2);
 			grpGirisPaneli.Controls.Add(button1);
@@ -54,14 +58,24 @@
 			grpGirisPaneli.Controls.Add(txtKullaniciAdi);
 			grpGirisPaneli.Location = new Point(12, 12);
 			grpGirisPaneli.Name = "grpGirisPaneli";
-			grpGirisPaneli.Size = new Size(347, 147);
+			grpGirisPaneli.Size = new Size(612, 215);
 			grpGirisPaneli.TabIndex = 0;
 			grpGirisPaneli.TabStop = false;
 			grpGirisPaneli.Text = "Giriş Paneli";
 			// 
+			// pictureBox1
+			// 
+			pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+			pictureBox1.Location = new Point(305, 9);
+			pictureBox1.Name = "pictureBox1";
+			pictureBox1.Size = new Size(307, 200);
+			pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+			pictureBox1.TabIndex = 4;
+			pictureBox1.TabStop = false;
+			// 
 			// button3
 			// 
-			button3.Location = new Point(0, 99);
+			button3.Location = new Point(6, 142);
 			button3.Name = "button3";
 			button3.Size = new Size(75, 23);
 			button3.TabIndex = 3;
@@ -71,7 +85,7 @@
 			// 
 			// button2
 			// 
-			button2.Location = new Point(0, 70);
+			button2.Location = new Point(6, 113);
 			button2.Name = "button2";
 			button2.Size = new Size(75, 23);
 			button2.TabIndex = 3;
@@ -81,7 +95,7 @@
 			// 
 			// button1
 			// 
-			button1.Location = new Point(0, 41);
+			button1.Location = new Point(6, 84);
 			button1.Name = "button1";
 			button1.Size = new Size(75, 23);
 			button1.TabIndex = 3;
@@ -93,7 +107,7 @@
 			// 
 			btnSifreyiGoster.BackgroundImage = (Image)resources.GetObject("btnSifreyiGoster.BackgroundImage");
 			btnSifreyiGoster.BackgroundImageLayout = ImageLayout.Stretch;
-			btnSifreyiGoster.Location = new Point(270, 107);
+			btnSifreyiGoster.Location = new Point(250, 171);
 			btnSifreyiGoster.Name = "btnSifreyiGoster";
 			btnSifreyiGoster.Size = new Size(32, 23);
 			btnSifreyiGoster.TabIndex = 2;
@@ -104,26 +118,26 @@
 			// label2
 			// 
 			label2.AutoSize = true;
-			label2.Font = new Font("Calibri", 12F, FontStyle.Italic, GraphicsUnit.Point);
-			label2.Location = new Point(148, 76);
+			label2.Font = new Font("Calibri", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
+			label2.Location = new Point(119, 135);
 			label2.Name = "label2";
-			label2.Size = new Size(38, 19);
+			label2.Size = new Size(63, 33);
 			label2.TabIndex = 1;
 			label2.Text = "Şifre";
 			// 
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Font = new Font("Calibri", 12F, FontStyle.Italic, GraphicsUnit.Point);
-			label1.Location = new Point(119, 19);
+			label1.Font = new Font("Calibri", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
+			label1.Location = new Point(78, 19);
 			label1.Name = "label1";
-			label1.Size = new Size(89, 19);
+			label1.Size = new Size(148, 33);
 			label1.TabIndex = 1;
 			label1.Text = "Kullanıcı Adı";
 			// 
 			// txtSifre
 			// 
-			txtSifre.Location = new Point(82, 107);
+			txtSifre.Location = new Point(62, 171);
 			txtSifre.Name = "txtSifre";
 			txtSifre.PasswordChar = '*';
 			txtSifre.Size = new Size(182, 23);
@@ -131,34 +145,49 @@
 			// 
 			// txtKullaniciAdi
 			// 
-			txtKullaniciAdi.Location = new Point(82, 41);
+			txtKullaniciAdi.Location = new Point(62, 55);
 			txtKullaniciAdi.Name = "txtKullaniciAdi";
 			txtKullaniciAdi.Size = new Size(182, 23);
 			txtKullaniciAdi.TabIndex = 0;
 			// 
 			// btnGirisYap
 			// 
-			btnGirisYap.BackColor = Color.LightGreen;
+			btnGirisYap.BackColor = Color.SpringGreen;
 			btnGirisYap.Font = new Font("Calibri", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
-			btnGirisYap.Location = new Point(12, 179);
+			btnGirisYap.Location = new Point(12, 233);
 			btnGirisYap.Name = "btnGirisYap";
-			btnGirisYap.Size = new Size(349, 49);
+			btnGirisYap.Size = new Size(282, 49);
 			btnGirisYap.TabIndex = 5;
 			btnGirisYap.Text = "GİRİŞ YAP";
 			btnGirisYap.UseVisualStyleBackColor = false;
 			btnGirisYap.Click += btnGirisYap_Click;
 			// 
+			// btnUygulamayiKapat
+			// 
+			btnUygulamayiKapat.BackColor = Color.Transparent;
+			btnUygulamayiKapat.BackgroundImage = (Image)resources.GetObject("btnUygulamayiKapat.BackgroundImage");
+			btnUygulamayiKapat.BackgroundImageLayout = ImageLayout.Stretch;
+			btnUygulamayiKapat.Font = new Font("Calibri", 20.25F, FontStyle.Italic, GraphicsUnit.Point);
+			btnUygulamayiKapat.Location = new Point(574, 233);
+			btnUygulamayiKapat.Name = "btnUygulamayiKapat";
+			btnUygulamayiKapat.Size = new Size(48, 49);
+			btnUygulamayiKapat.TabIndex = 5;
+			btnUygulamayiKapat.UseVisualStyleBackColor = false;
+			btnUygulamayiKapat.Click += btnUygulamayiKapat_Click;
+			// 
 			// LoginPage
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(373, 240);
+			ClientSize = new Size(631, 293);
+			Controls.Add(btnUygulamayiKapat);
 			Controls.Add(btnGirisYap);
 			Controls.Add(grpGirisPaneli);
 			Name = "LoginPage";
 			Text = "LoginPage";
 			grpGirisPaneli.ResumeLayout(false);
 			grpGirisPaneli.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
 			ResumeLayout(false);
 		}
 
@@ -174,5 +203,7 @@
 		private Button button1;
 		private Button button3;
 		private Button button2;
+		private PictureBox pictureBox1;
+		private Button btnUygulamayiKapat;
 	}
 }

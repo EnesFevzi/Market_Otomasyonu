@@ -24,8 +24,8 @@ namespace Market_Otomasyonu
 			AddCategoriesToCombobox();
 			AddUnitsToCombobox();
 			GetAllProducts();
+			DisableButton();
 		}
-
 
 		private void btnKaydet_Click(object sender, EventArgs e)
 		{
@@ -51,11 +51,10 @@ namespace Market_Otomasyonu
 				product.Unit = (Unit)cmbBirim.SelectedItem;
 				product.TaxRatio = nmrVergiOrani.Value;
 				product.PurchasePrice = nmrAlisFiyati.Value;
-				product.SalePrice = nmrSatisFiyati.Value + ((product.TaxRatio * nmrSatisFiyati.Value)/100);
+				product.SalePrice = nmrSatisFiyati.Value + ((product.TaxRatio * nmrSatisFiyati.Value) / 100);
 				product.Quantity = nmrPakettekiUrunSayisi.Value;
 				product.ExpirationDate = dtSonKullanmaTarihi.Value;
 				product.Stock = (int)nmrStokAdedi.Value;
-				product.IsContinued = true;
 
 				_productService.Add(product);
 				MessageBox.Show("Ýþlem baþarýlý!");
@@ -127,6 +126,7 @@ namespace Market_Otomasyonu
 				nmrVergiOrani.Value = selectedProduct.TaxRatio;
 				nmrPakettekiUrunSayisi.Value = selectedProduct.Quantity;
 				dtSonKullanmaTarihi.Value = selectedProduct.ExpirationDate;
+				EnableButton();
 			}
 		}
 		private void btnGuncelle_Click(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace Market_Otomasyonu
 
 				selectedProduct.Unit = (Unit)cmbBirim.SelectedItem;
 				selectedProduct.SalePrice = nmrAlisFiyati.Value;
-				selectedProduct.Brand =txtMarka.Text;
+				selectedProduct.Brand = txtMarka.Text;
 				selectedProduct.Stock = (int)nmrStokAdedi.Value;
 				selectedProduct.PurchasePrice = nmrSatisFiyati.Value;
 				selectedProduct.TaxRatio = nmrVergiOrani.Value;
@@ -153,6 +153,7 @@ namespace Market_Otomasyonu
 				MessageBox.Show("Ýþlem baþarýlý!");
 				GetAllProducts();
 				Helper.Clean(grpUrunEkle.Controls);
+				DisableButton();
 			}
 			else
 			{
@@ -170,6 +171,7 @@ namespace Market_Otomasyonu
 					_productService.Delete(selectedProduct);
 					MessageBox.Show("Silme iþlemi Baþarýyla Gerçekleþti");
 					GetAllProducts();
+					DisableButton();
 				}
 				else
 				{
@@ -177,6 +179,33 @@ namespace Market_Otomasyonu
 				}
 			}
 		}
+		private void DisableButton()
+		{
+			btnGuncelle.Enabled = false;
+			btnSil.Enabled = false;
+			btnKaydet.Enabled = true;
+		}
+		private void EnableButton()
+		{
+			btnGuncelle.Enabled = true;
+			btnSil.Enabled = true;
+			btnKaydet.Enabled = false;
+		}
 
+		private void btnSatýþaAç_Click(object sender, EventArgs e)
+		{
+			_productService.ProductStatusChangeOpenSale(selectedProduct.ProductID);
+			GetAllProducts();
+			MessageBox.Show("Ürün Durumu Satýþa Açýk Olarak Atandý...");
+			Helper.Clean(grpUrunEkle.Controls);
+		}
+
+		private void btnSatýsaKapat_Click(object sender, EventArgs e)
+		{
+			_productService.ProductStatusChangeCloseSale(selectedProduct.ProductID);
+			GetAllProducts();
+			MessageBox.Show("Ürün Durumu Satýþa Kapalý Olarak Atandý...");
+			Helper.Clean(grpUrunEkle.Controls);
+		}
 	}
 }

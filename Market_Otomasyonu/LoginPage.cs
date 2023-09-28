@@ -35,11 +35,18 @@ namespace Market_Otomasyonu.UI
 				var user = _userService.GetByFilterUser(X => X.Username == txtKullaniciAdi.Text && X.Password == _userService.PasswordHash(txtSifre.Text));
 				if (user != null)
 				{
-					UserPanel userpanel = new UserPanel(user);
-					this.Hide();
-					userpanel.ShowDialog();
-				}
+					if (user.IsWorking == "Çalışıyor")
+					{
+						UserPanel userpanel = new UserPanel(user);
+						this.Hide();
+						userpanel.ShowDialog();
+					}
+					else
+					{
+						MessageBox.Show("Kullanıcı Şuan Çalışıyor Olarak Göünmüyor...");
+					}
 
+				}
 			}
 			if (result == "Şifre Yanlış")
 			{
@@ -79,6 +86,20 @@ namespace Market_Otomasyonu.UI
 		{
 			txtKullaniciAdi.Text = "ebrucevik";
 			txtSifre.Text = "*123456ASas*";
+		}
+
+		private void btnUygulamayiKapat_Click(object sender, EventArgs e)
+		{
+			DialogResult dr = MessageBox.Show("Uygulama Kapatılacak Emin Misiniz ?", "UYARI", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+			if (dr == DialogResult.Yes)
+			{
+				Application.Exit();
+			}
+			else
+			{
+				return;
+			}
+
 		}
 	}
 }

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleScreen));
 			grpUrunEkle = new GroupBox();
 			nmrAdet = new NumericUpDown();
 			label1 = new Label();
@@ -61,19 +62,21 @@
 			btnSiparisSil = new Button();
 			grpUrunAra = new GroupBox();
 			grpUrunListesi = new GroupBox();
+			pictureBox1 = new PictureBox();
 			grpUrunEkle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)nmrAdet).BeginInit();
 			grpFiyatAlani.SuspendLayout();
 			grpOdemeYontemi.SuspendLayout();
 			grpUrunAra.SuspendLayout();
 			grpUrunListesi.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			SuspendLayout();
 			// 
 			// grpUrunEkle
 			// 
 			grpUrunEkle.Controls.Add(nmrAdet);
 			grpUrunEkle.Controls.Add(label1);
-			grpUrunEkle.Location = new Point(442, 23);
+			grpUrunEkle.Location = new Point(431, 47);
 			grpUrunEkle.Name = "grpUrunEkle";
 			grpUrunEkle.Size = new Size(205, 77);
 			grpUrunEkle.TabIndex = 11;
@@ -82,7 +85,7 @@
 			// 
 			// nmrAdet
 			// 
-			nmrAdet.Location = new Point(61, 31);
+			nmrAdet.Location = new Point(65, 31);
 			nmrAdet.Name = "nmrAdet";
 			nmrAdet.Size = new Size(120, 23);
 			nmrAdet.TabIndex = 1;
@@ -90,16 +93,16 @@
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+			label1.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
 			label1.Location = new Point(17, 31);
 			label1.Name = "label1";
-			label1.Size = new Size(38, 18);
+			label1.Size = new Size(42, 19);
 			label1.TabIndex = 0;
 			label1.Text = "Adet";
 			// 
 			// txtUrunAra
 			// 
-			txtUrunAra.Location = new Point(84, 18);
+			txtUrunAra.Location = new Point(106, 18);
 			txtUrunAra.Name = "txtUrunAra";
 			txtUrunAra.Size = new Size(259, 23);
 			txtUrunAra.TabIndex = 1;
@@ -136,22 +139,23 @@
 			// 
 			// btnSiparisiTamamla
 			// 
-			btnSiparisiTamamla.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSiparisiTamamla.BackColor = Color.SpringGreen;
+			btnSiparisiTamamla.Font = new Font("Calibri", 20.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
 			btnSiparisiTamamla.Location = new Point(1002, 527);
 			btnSiparisiTamamla.Name = "btnSiparisiTamamla";
 			btnSiparisiTamamla.Size = new Size(226, 122);
 			btnSiparisiTamamla.TabIndex = 9;
 			btnSiparisiTamamla.Text = "SİPARİŞİ TAMAMLA";
-			btnSiparisiTamamla.UseVisualStyleBackColor = true;
+			btnSiparisiTamamla.UseVisualStyleBackColor = false;
 			btnSiparisiTamamla.Click += btnSiparisiTamamla_Click;
 			// 
 			// label6
 			// 
 			label6.AutoSize = true;
-			label6.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			label6.Location = new Point(16, 23);
+			label6.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			label6.Location = new Point(16, 18);
 			label6.Name = "label6";
-			label6.Size = new Size(62, 18);
+			label6.Size = new Size(71, 19);
 			label6.TabIndex = 0;
 			label6.Text = "Ürün Ara";
 			// 
@@ -229,40 +233,40 @@
 			// label8
 			// 
 			label8.AutoSize = true;
-			label8.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+			label8.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
 			label8.Location = new Point(6, 63);
 			label8.Name = "label8";
-			label8.Size = new Size(86, 18);
+			label8.Size = new Size(96, 19);
 			label8.TabIndex = 0;
 			label8.Text = "Toplam Fiyat";
 			// 
 			// lblToplamFiyat
 			// 
 			lblToplamFiyat.AutoSize = true;
-			lblToplamFiyat.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			lblToplamFiyat.Location = new Point(172, 63);
+			lblToplamFiyat.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			lblToplamFiyat.Location = new Point(189, 63);
 			lblToplamFiyat.Name = "lblToplamFiyat";
-			lblToplamFiyat.Size = new Size(15, 18);
+			lblToplamFiyat.Size = new Size(17, 19);
 			lblToplamFiyat.TabIndex = 0;
 			lblToplamFiyat.Text = "0";
 			// 
 			// lblToplamSatisAdedi
 			// 
 			lblToplamSatisAdedi.AutoSize = true;
-			lblToplamSatisAdedi.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			lblToplamSatisAdedi.Location = new Point(172, 29);
+			lblToplamSatisAdedi.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			lblToplamSatisAdedi.Location = new Point(189, 29);
 			lblToplamSatisAdedi.Name = "lblToplamSatisAdedi";
-			lblToplamSatisAdedi.Size = new Size(15, 18);
+			lblToplamSatisAdedi.Size = new Size(17, 19);
 			lblToplamSatisAdedi.TabIndex = 0;
 			lblToplamSatisAdedi.Text = "0";
 			// 
 			// label7
 			// 
 			label7.AutoSize = true;
-			label7.Font = new Font("Calibri", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+			label7.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
 			label7.Location = new Point(6, 29);
 			label7.Name = "label7";
-			label7.Size = new Size(124, 18);
+			label7.Size = new Size(138, 19);
 			label7.TabIndex = 0;
 			label7.Text = "Toplam Satış Adedi";
 			// 
@@ -292,9 +296,10 @@
 			// rdbKrediKarti
 			// 
 			rdbKrediKarti.AutoSize = true;
-			rdbKrediKarti.Location = new Point(147, 32);
+			rdbKrediKarti.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
+			rdbKrediKarti.Location = new Point(127, 32);
 			rdbKrediKarti.Name = "rdbKrediKarti";
-			rdbKrediKarti.Size = new Size(79, 19);
+			rdbKrediKarti.Size = new Size(99, 23);
 			rdbKrediKarti.TabIndex = 0;
 			rdbKrediKarti.TabStop = true;
 			rdbKrediKarti.Text = "Kredi Kartı";
@@ -303,9 +308,10 @@
 			// rdbNakit
 			// 
 			rdbNakit.AutoSize = true;
+			rdbNakit.Font = new Font("Calibri", 12F, FontStyle.Bold, GraphicsUnit.Point);
 			rdbNakit.Location = new Point(6, 32);
 			rdbNakit.Name = "rdbNakit";
-			rdbNakit.Size = new Size(53, 19);
+			rdbNakit.Size = new Size(64, 23);
 			rdbNakit.TabIndex = 0;
 			rdbNakit.TabStop = true;
 			rdbNakit.Text = "Nakit";
@@ -333,7 +339,7 @@
 			grpUrunAra.Controls.Add(btnSiparisEkle);
 			grpUrunAra.Location = new Point(12, 12);
 			grpUrunAra.Name = "grpUrunAra";
-			grpUrunAra.Size = new Size(874, 260);
+			grpUrunAra.Size = new Size(858, 260);
 			grpUrunAra.TabIndex = 14;
 			grpUrunAra.TabStop = false;
 			// 
@@ -346,11 +352,23 @@
 			grpUrunListesi.TabIndex = 15;
 			grpUrunListesi.TabStop = false;
 			// 
+			// pictureBox1
+			// 
+			pictureBox1.BackColor = Color.Transparent;
+			pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+			pictureBox1.Location = new Point(964, 12);
+			pictureBox1.Name = "pictureBox1";
+			pictureBox1.Size = new Size(275, 268);
+			pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+			pictureBox1.TabIndex = 16;
+			pictureBox1.TabStop = false;
+			// 
 			// SaleScreen
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1251, 672);
+			Controls.Add(pictureBox1);
 			Controls.Add(grpUrunListesi);
 			Controls.Add(grpUrunAra);
 			Controls.Add(grpOdemeYontemi);
@@ -369,6 +387,7 @@
 			grpUrunAra.ResumeLayout(false);
 			grpUrunAra.PerformLayout();
 			grpUrunListesi.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
 			ResumeLayout(false);
 		}
 
@@ -417,5 +436,6 @@
 		private ColumnHeader columnHeader13;
 		private GroupBox grpUrunAra;
 		private GroupBox grpUrunListesi;
+		private PictureBox pictureBox1;
 	}
 }

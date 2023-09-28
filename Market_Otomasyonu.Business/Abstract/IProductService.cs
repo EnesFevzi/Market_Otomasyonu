@@ -16,9 +16,11 @@ namespace Market_Otomasyonu.Business.Abstract
 		void Delete(Product product);
 		List<Product> GetAll();
 		List<Product> GetAllProductWtihCategory();
+		List<Product> GetAllProductWtihOpenSale();
 		Product GetByID(int id);
 		Product GetByFilter(Expression<Func<Product, bool>> filter);
 		List<Product> GetByFilterList(Expression<Func<Product, bool>> filter);
-
+		public void ProductStatusChangeOpenSale(int id);
+		public void ProductStatusChangeCloseSale(int id);
 	}
 }
