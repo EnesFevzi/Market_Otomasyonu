@@ -79,14 +79,14 @@ namespace Market_Otomasyonu.Data.SeedData
 				 new Product { ProductID = 23, CategoryID = 9, Name = "Şampuan", Brand = "Elidor", SalePrice = 84.99M, TaxRatio = 0.1M, PurchasePrice = 103.50M, Quantity = 1, Unit = Unit.Adet, Stock = 100, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
 
 
-				 new Product { ProductID = 24, CategoryID = 9, Name = "Sıvı El Sabunu", Brand = "Dove", SalePrice = 80.00M, TaxRatio = 0.1M, PurchasePrice = 90.56M, Quantity = 1, Unit = Unit.Adet, Stock = 100, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
+				 new Product { ProductID = 24, CategoryID = 9, Name = "Sıvı El Sabunu", Brand = "Dove", SalePrice = 80.00M, TaxRatio = 0.1M, PurchasePrice = 90.56M, Quantity = 1, Unit = Unit.Adet, Stock = 18, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
 
 
-				 new Product { ProductID = 25, CategoryID = 10, Name = "Domestos Dağ Esintisi", Brand = "Domestos", SalePrice = 33.49M, TaxRatio = 0.2M, PurchasePrice = 39.50M, Quantity = 1, Unit = Unit.Adet, Stock = 100, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
+				 new Product { ProductID = 25, CategoryID = 10, Name = "Domestos Dağ Esintisi", Brand = "Domestos", SalePrice = 33.49M, TaxRatio = 0.2M, PurchasePrice = 39.50M, Quantity = 1, Unit = Unit.Adet, Stock = 25, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
 
-				 new Product { ProductID = 26, CategoryID = 10, Name = "Tuvalet Kağıdı (16'lı)", Brand = "Solo", SalePrice = 130.00M, TaxRatio = 0.2M, PurchasePrice = 164.39M, Quantity = 1, Unit = Unit.Adet, Stock = 100, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
+				 new Product { ProductID = 26, CategoryID = 10, Name = "Tuvalet Kağıdı (16'lı)", Brand = "Solo", SalePrice = 130.00M, TaxRatio = 0.2M, PurchasePrice = 164.39M, Quantity = 1, Unit = Unit.Adet, Stock = 10, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" },
 
-				 new Product { ProductID = 27, CategoryID = 10, Name = "Finish Quantum (40'lı)", Brand = "Finish", SalePrice = 54.00M, TaxRatio = 0.2M, PurchasePrice = 71.10M, Quantity = 1, Unit = Unit.Adet, Stock = 100, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" }
+				 new Product { ProductID = 27, CategoryID = 10, Name = "Finish Quantum (40'lı)", Brand = "Finish", SalePrice = 54.00M, TaxRatio = 0.2M, PurchasePrice = 71.10M, Quantity = 1, Unit = Unit.Adet, Stock = 15, ExpirationDate = new DateTime(2025, 09, 26), IsContinued = "Satışa Açık" }
 
 
 				);

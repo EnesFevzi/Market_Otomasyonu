@@ -62,7 +62,7 @@ namespace Market_Otomasyonu.Business.Concrete
 		public bool BoolProductListWithLess20Stock()
 		{
 			var product= _productRepository.GetProductListWithLess20Stock();
-			if (product == null)
+			if (product.Count == 0)
 			{
 				return false;
 			}
