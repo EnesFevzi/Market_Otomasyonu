@@ -12,6 +12,7 @@ Market sales application with Admin and Employee Panel on Windows Form Applicati
 ![Screenshot_5](https://github.com/EnesFevzi/Market_Otomasyonu/assets/118919666/e83fbff4-61b0-43eb-a8e7-71876c9b2f43)
 ![Screenshot_6](https://github.com/EnesFevzi/Market_Otomasyonu/assets/118919666/a9a4fcf7-d5c8-408b-9a21-b6896f2f2d82)
 ![Screenshot_7](https://github.com/EnesFevzi/Market_Otomasyonu/assets/118919666/cb6580b7-2e1c-461d-a60e-747784230581)
+![Screenshot_1](https://github.com/EnesFevzi/Market_Otomasyonu/assets/118919666/a53d0343-40d0-4672-af87-abbbe7923c27)
 
 
 
