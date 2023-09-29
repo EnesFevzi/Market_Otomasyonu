@@ -135,7 +135,7 @@
 			txtUrunAdi.Name = "txtUrunAdi";
 			txtUrunAdi.Size = new Size(188, 23);
 			txtUrunAdi.TabIndex = 1;
-			txtUrunAdi.TextChanged += txtUrunAdi_TextChanged;
+
 			// 
 			// cmbKategori
 			// 

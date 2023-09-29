@@ -70,7 +70,7 @@
 			txtKategoriAdi.Name = "txtKategoriAdi";
 			txtKategoriAdi.Size = new Size(188, 23);
 			txtKategoriAdi.TabIndex = 1;
-			txtKategoriAdi.TextChanged += txtKategoriAdi_TextChanged;
+
 			// 
 			// btnKaydet
 			// 

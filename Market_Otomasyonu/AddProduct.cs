@@ -216,9 +216,6 @@ namespace Market_Otomasyonu
 			Helper.Clean(grpUrunEkle.Controls);
 		}
 
-		private void txtUrunAdi_TextChanged(object sender, EventArgs e)
-		{
-			EnableButton();
-		}
+
 	}
 }

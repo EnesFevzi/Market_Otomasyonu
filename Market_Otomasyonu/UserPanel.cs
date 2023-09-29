@@ -39,6 +39,7 @@ namespace Market_Otomasyonu.UI
 					StockControl stockControl = new StockControl();
 					this.Hide();
 					stockControl.ShowDialog();
+					this.Show();
 				}
 
 			}
@@ -81,6 +82,7 @@ namespace Market_Otomasyonu.UI
 			UserPanelSetting userPanelSetting = new UserPanelSetting();
 			this.Hide();
 			userPanelSetting.ShowDialog();
+			this.Show();
 		}
 
 		private void btnUygulamayiKapat_Click(object sender, EventArgs e)

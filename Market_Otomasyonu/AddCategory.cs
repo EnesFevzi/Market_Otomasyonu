@@ -165,9 +165,6 @@ namespace Market_Otomasyonu.UI
 			DisableButton();
 		}
 
-		private void txtKategoriAdi_TextChanged(object sender, EventArgs e)
-		{
-			EnableButton();
-		}
+		
 	}
 }

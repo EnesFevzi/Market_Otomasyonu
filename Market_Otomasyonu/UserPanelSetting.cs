@@ -148,6 +148,7 @@ namespace Market_Otomasyonu.UI
 			AddUsers addUsers = new AddUsers();
 			this.Hide();
 			addUsers.ShowDialog();
+			this.Show();
 		}
 	}
 }
