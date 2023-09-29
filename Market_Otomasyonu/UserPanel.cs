@@ -1,5 +1,7 @@
-﻿using Market_Otomasyonu.Business.Concrete;
+﻿using Market_Otomasyonu.Business.Abstract;
+using Market_Otomasyonu.Business.Concrete;
 using Market_Otomasyonu.Entity.Entities;
+using Market_Otomasyonu.UI.Extensions;
 
 namespace Market_Otomasyonu.UI
 {
@@ -7,12 +9,14 @@ namespace Market_Otomasyonu.UI
 	{
 		private AppUser _user;
 		private readonly RoleService _roleService;
+		private readonly ProductService _productService;
 
 		public UserPanel(AppUser user)
 		{
 			InitializeComponent();
 			_user = user;
 			_roleService = new RoleService();
+			_productService = new ProductService();
 		}
 		private void UserPanel_Load(object sender, EventArgs e)
 		{
@@ -27,6 +31,18 @@ namespace Market_Otomasyonu.UI
 				btnKullaniciPaneli.Visible = false;
 
 			}
+			if (_productService.BoolProductListWithLess20Stock())
+			{
+				DialogResult dr = MessageBox.Show("Stok Sayısı 20 den az olan ürünler var bakmak ister misin ?", "UYARI", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+				if (dr == DialogResult.Yes)
+				{
+					StockControl stockControl = new StockControl();
+					this.Hide();
+					stockControl.ShowDialog();
+				}
+
+			}
+
 		}
 		private void btnRapor_Click(object sender, EventArgs e)
 		{

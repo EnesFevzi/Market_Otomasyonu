@@ -63,6 +63,7 @@
 			grpUrunAra = new GroupBox();
 			grpUrunListesi = new GroupBox();
 			pictureBox1 = new PictureBox();
+			columnHeader6 = new ColumnHeader();
 			grpUrunEkle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)nmrAdet).BeginInit();
 			grpFiyatAlani.SuspendLayout();
@@ -110,7 +111,7 @@
 			// 
 			// lstArananUrunler
 			// 
-			lstArananUrunler.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader4, columnHeader3, columnHeader5 });
+			lstArananUrunler.Columns.AddRange(new ColumnHeader[] { columnHeader2, columnHeader4, columnHeader3, columnHeader6, columnHeader5 });
 			lstArananUrunler.FullRowSelect = true;
 			lstArananUrunler.GridLines = true;
 			lstArananUrunler.Location = new Point(16, 47);
@@ -128,14 +129,17 @@
 			// columnHeader4
 			// 
 			columnHeader4.Text = "Marka";
+			columnHeader4.Width = 70;
 			// 
 			// columnHeader3
 			// 
 			columnHeader3.Text = "Birimi";
+			columnHeader3.Width = 70;
 			// 
 			// columnHeader5
 			// 
 			columnHeader5.Text = "Fiyat";
+			columnHeader5.Width = 70;
 			// 
 			// btnSiparisiTamamla
 			// 
@@ -363,6 +367,11 @@
 			pictureBox1.TabIndex = 16;
 			pictureBox1.TabStop = false;
 			// 
+			// columnHeader6
+			// 
+			columnHeader6.Text = "Stok Miktarı";
+			columnHeader6.Width = 70;
+			// 
 			// SaleScreen
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -437,5 +446,6 @@
 		private GroupBox grpUrunAra;
 		private GroupBox grpUrunListesi;
 		private PictureBox pictureBox1;
+		private ColumnHeader columnHeader6;
 	}
 }

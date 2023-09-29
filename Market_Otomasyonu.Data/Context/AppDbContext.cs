@@ -27,10 +27,18 @@ namespace Market_Otomasyonu.Data.Context
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<Product>().
+				HasOne(x => x.Category)
+				.WithMany(x => x.Products)
+				.HasForeignKey(product => product.CategoryID)
+				.IsRequired(false)
+				.OnDelete(DeleteBehavior.NoAction);
+
 			modelBuilder.ApplyConfiguration(new SeedCategories());
 			modelBuilder.ApplyConfiguration(new SeedProducts());
 			modelBuilder.ApplyConfiguration(new SeedAppRole());
 			modelBuilder.ApplyConfiguration(new SeedAppUser());
+
 			base.OnModelCreating(modelBuilder);
 		}
 	}

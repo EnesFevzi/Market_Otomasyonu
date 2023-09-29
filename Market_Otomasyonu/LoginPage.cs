@@ -104,9 +104,9 @@ namespace Market_Otomasyonu.UI
 
 		private void LoginPage_Load(object sender, EventArgs e)
 		{
-			button1.Visible = false;
-			button2.Visible = false;
-			button3.Visible = false;
+			button1.Visible = true;
+			button2.Visible = true;
+			button3.Visible = true;
 		}
 	}
 }

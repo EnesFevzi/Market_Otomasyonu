@@ -1,6 +1,5 @@
 ﻿using Market_Otomasyonu.Data.Context;
 using Market_Otomasyonu.Entity.Entities;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +12,11 @@ namespace Market_Otomasyonu.Data.Repository
 	public class CategoryRepository
 	{
 		private readonly AppDbContext _context;
-        public CategoryRepository()
-        {
-            _context = new AppDbContext();
-        }
-        public void Add(Category category)
+		public CategoryRepository()
+		{
+			_context = new AppDbContext();
+		}
+		public void Add(Category category)
 		{
 			_context.Categories.Add(category);
 			_context.SaveChanges();
@@ -37,7 +36,7 @@ namespace Market_Otomasyonu.Data.Repository
 		}
 		public List<Category> GetAll()
 		{
-			return _context.Set<Category>().ToList();
+			return _context.Categories.Where(x => x.CategoryID != 1).ToList();
 		}
 
 		public Category GetByID(int id)
@@ -63,5 +62,25 @@ namespace Market_Otomasyonu.Data.Repository
 			var category = _context.Categories.Any(x => x.Name == name);
 			return category;
 		}
+		public void CategoryStatusChangeActive(int id)
+		{
+			var values = _context.Categories.Find(id);
+			values.IsActive = "Aktif";
+			_context.SaveChanges();
+		}
+
+		public void CategoryStatusChangeDisable(int id)
+		{
+			var values = _context.Categories.Find(id);
+			values.IsActive = "Pasif";
+			_context.SaveChanges();
+		}
+
+		public List<Category> GetCategoryWithCategoryActive()
+		{
+			return _context.Categories.Where(x => x.IsActive == "Aktif").ToList();
+		}
+
+
 	}
 }

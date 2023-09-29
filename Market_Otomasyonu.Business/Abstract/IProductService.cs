@@ -22,5 +22,8 @@ namespace Market_Otomasyonu.Business.Abstract
 		List<Product> GetByFilterList(Expression<Func<Product, bool>> filter);
 		public void ProductStatusChangeOpenSale(int id);
 		public void ProductStatusChangeCloseSale(int id);
+		bool BoolProductListWithLess20Stock();
+		List<Product> GetProductListWithLess20Stock();
+
 	}
 }

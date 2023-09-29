@@ -33,6 +33,7 @@ namespace Market_Otomasyonu.Business.Concrete
 			return _categoryRepository.GetAll();
 		}
 
+
 		public Category GetByIDCategory(int id)
 		{
 			return _categoryRepository.GetByID(id);
@@ -51,6 +52,21 @@ namespace Market_Otomasyonu.Business.Concrete
 		public bool IsCategoryExist(string name)
 		{
 			return _categoryRepository.IsCategoryExist(name);
+		}
+
+		public void CategoryStatusChangeActive(int id)
+		{
+			_categoryRepository.CategoryStatusChangeActive(id);
+		}
+
+		public void CategoryStatusChangeDisable(int id)
+		{
+			_categoryRepository.CategoryStatusChangeDisable(id);
+		}
+
+		public List<Category> GetCategoryWithCategoryActive()
+		{
+			return _categoryRepository.GetCategoryWithCategoryActive();
 		}
 	}
 }

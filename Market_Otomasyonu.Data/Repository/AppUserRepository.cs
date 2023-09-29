@@ -1,6 +1,5 @@
 ﻿using Market_Otomasyonu.Data.Context;
 using Market_Otomasyonu.Entity.Entities;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

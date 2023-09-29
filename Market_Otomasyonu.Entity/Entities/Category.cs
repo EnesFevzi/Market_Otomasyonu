@@ -14,10 +14,10 @@ namespace Market_Otomasyonu.Entity.Entities
         }
         public int CategoryID { get; set; }
         public string Name { get; set; }
+		public string IsActive { get; set; } = "Aktif";
 
-
-        //Navigation Prop
-        public virtual ICollection<Product> Products { get; set;}
+		//Navigation Prop
+		public virtual ICollection<Product> Products { get; set;}
 
 		public override string ToString()
 		{

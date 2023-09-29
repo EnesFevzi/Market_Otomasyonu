@@ -12,10 +12,10 @@ namespace Market_Otomasyonu.Data.Repository
 	public class RoleRepository
 	{
 		private readonly AppDbContext _context;
-        public RoleRepository()
-        {
-            _context = new AppDbContext();
-        }
+		public RoleRepository()
+		{
+			_context = new AppDbContext();
+		}
 		public int GetRoleIdByName(string roleName)
 		{
 			var role = _context.Roles.FirstOrDefault(r => r.RoleName == roleName);

@@ -12,28 +12,28 @@ namespace Market_Otomasyonu.Data.Repository
 	public class SaleRepository
 	{
 		protected readonly AppDbContext _context;
-        public SaleRepository()
-        {
-            _context = new AppDbContext();
-        }
-        public void Add(Sale sale)
+		public SaleRepository()
+		{
+			_context = new AppDbContext();
+		}
+		public void Add(Sale sale)
 		{
 			_context.Sales.Add(sale);
 			_context.SaveChanges();
 		}
 
 
-		public void Update(Sale sale) 
-		{ 
+		public void Update(Sale sale)
+		{
 			_context.Sales.Update(sale);
 			_context.SaveChanges();
 		}
 
-		public void Delete(Sale sale) 
-		{ 
+		public void Delete(Sale sale)
+		{
 			_context.Sales.Remove(sale);
 			_context.SaveChanges();
-		
+
 		}
 		public List<Sale> GetAll()
 		{
@@ -45,7 +45,7 @@ namespace Market_Otomasyonu.Data.Repository
 			return _context.Set<Sale>().Find(id);
 		}
 
-		public Sale GetByFilter(Expression<Func<Sale,bool>> filter)
+		public Sale GetByFilter(Expression<Func<Sale, bool>> filter)
 		{
 			return _context.Set<Sale>().First(filter);
 		}

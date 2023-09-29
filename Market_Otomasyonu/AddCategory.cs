@@ -1,4 +1,5 @@
-﻿using Market_Otomasyonu.Business.Concrete;
+﻿using Market_Otomasyonu.Business.Abstract;
+using Market_Otomasyonu.Business.Concrete;
 using Market_Otomasyonu.Data.Repository;
 using Market_Otomasyonu.Entity.Entities;
 using Market_Otomasyonu.UI.Extensions;
@@ -17,9 +18,11 @@ namespace Market_Otomasyonu.UI
 	public partial class AddCategory : Form
 	{
 		private readonly CategoryService _categoryService;
+		private readonly ProductService _productService;
 		public AddCategory()
 		{
 			_categoryService = new CategoryService();
+			_productService = new ProductService();
 			InitializeComponent();
 		}
 		private void AddCategory_Load(object sender, EventArgs e)
@@ -59,6 +62,7 @@ namespace Market_Otomasyonu.UI
 			foreach (var category in categories)
 			{
 				ListViewItem item = new ListViewItem(category.Name);
+				item.SubItems.Add(category.IsActive);
 				item.Tag = category;
 				lstKategoriler.Items.Add(item);
 			}
@@ -73,6 +77,7 @@ namespace Market_Otomasyonu.UI
 				string updatedCategoryName = txtKategoriAdi.Text;
 				selectedCategory.Name = updatedCategoryName;
 				_categoryService.UpdateCategory(selectedCategory);
+
 				MessageBox.Show("Güncelleme işlemi Başarıyla Gerçekleşti");
 				GetAllCategories();
 				Helper.Clean(grpKategoriEkle.Controls);
@@ -91,10 +96,23 @@ namespace Market_Otomasyonu.UI
 
 				if (selectedCategory != null)
 				{
-					_categoryService.DeleteCategory(selectedCategory);
-					MessageBox.Show("Silme işlemi Başarıyla Gerçekleşti");
-					GetAllCategories();
-					DisableButton();
+					DialogResult dr = MessageBox.Show("Kategoriye bağlı olan ürünlerin kategorisi sıfırlanacaktır Emin Misiniz? Dilerseniz Pasif Hale Getirebilirsiniz", "UYARI", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+					if (dr == DialogResult.Yes)
+					{
+						_productService.ChangeProductCategoryToNull(selectedCategory.CategoryID);
+						_categoryService.DeleteCategory(selectedCategory);
+						MessageBox.Show("Silme işlemi Başarıyla Gerçekleşti");
+						GetAllCategories();
+						DisableButton();
+						Helper.Clean(grpKategoriEkle.Controls);
+					}
+					else
+					{
+						return;
+					}
+
+
+
 				}
 				else
 				{
@@ -117,12 +135,39 @@ namespace Market_Otomasyonu.UI
 			btnGuncelle.Enabled = false;
 			btnSil.Enabled = false;
 			btnKaydet.Enabled = true;
+			btnAktifYap.Enabled = false;
+			btnPasifYap.Enabled = false;
 		}
 		private void EnableButton()
 		{
 			btnGuncelle.Enabled = true;
 			btnSil.Enabled = true;
 			btnKaydet.Enabled = false;
+			btnAktifYap.Enabled = true;
+			btnPasifYap.Enabled = true;
+		}
+
+		private void btnAktifYap_Click(object sender, EventArgs e)
+		{
+			_categoryService.CategoryStatusChangeActive(selectedCategory.CategoryID);
+			GetAllCategories();
+			MessageBox.Show("Kategori Durumu Aktif Olarak Atandı...");
+			Helper.Clean(grpKategoriEkle.Controls);
+			DisableButton();
+		}
+
+		private void btnPasifYap_Click(object sender, EventArgs e)
+		{
+			_categoryService.CategoryStatusChangeDisable(selectedCategory.CategoryID);
+			GetAllCategories();
+			MessageBox.Show("Kategori Durumu Pasif Olarak Atandı...");
+			Helper.Clean(grpKategoriEkle.Controls);
+			DisableButton();
+		}
+
+		private void txtKategoriAdi_TextChanged(object sender, EventArgs e)
+		{
+			EnableButton();
 		}
 	}
 }

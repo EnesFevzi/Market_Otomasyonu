@@ -30,7 +30,7 @@ namespace Market_Otomasyonu.Entity.Entities
 
 		//Navigation Prop
 		public int CategoryID { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
         public ICollection<ShoppingCart> ShoppingCarts { get; set;}
 

@@ -1,4 +1,5 @@
 ﻿using Market_Otomasyonu.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace Market_Otomasyonu.Business.Abstract
@@ -13,6 +14,9 @@ namespace Market_Otomasyonu.Business.Abstract
 		Category GetByFilterCategory(Expression<Func<Category, bool>> filter);
 		List<Category> GetByFilterListCategory(Expression<Func<Category, bool>> filter);
 		bool IsCategoryExist(string name);
+		void CategoryStatusChangeActive(int id);
+		void CategoryStatusChangeDisable(int id);
+		List<Category> GetCategoryWithCategoryActive();
 
 	}
 }

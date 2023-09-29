@@ -107,7 +107,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             UserID = 1,
                             ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
-                            CreatedDate = new DateTime(2023, 9, 28, 16, 14, 28, 367, DateTimeKind.Local).AddTicks(7737),
+                            CreatedDate = new DateTime(2023, 9, 29, 11, 30, 57, 612, DateTimeKind.Local).AddTicks(9873),
                             Gender = "Erkek",
                             IsWorking = "Çalışıyor",
                             Name = "Enes",
@@ -120,7 +120,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             UserID = 2,
                             ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
-                            CreatedDate = new DateTime(2023, 9, 28, 16, 14, 28, 367, DateTimeKind.Local).AddTicks(7769),
+                            CreatedDate = new DateTime(2023, 9, 29, 11, 30, 57, 612, DateTimeKind.Local).AddTicks(9885),
                             Gender = "Erkek",
                             IsWorking = "Çalışıyor",
                             Name = "İhsan",
@@ -134,7 +134,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             UserID = 3,
                             ConfirmPassword = "937D4852C65D801C404334353B1EF43D9A7C4EC43C0F4DF8F3BE33AE2A9DB5A7",
-                            CreatedDate = new DateTime(2023, 9, 28, 16, 14, 28, 367, DateTimeKind.Local).AddTicks(7773),
+                            CreatedDate = new DateTime(2023, 9, 29, 11, 30, 57, 612, DateTimeKind.Local).AddTicks(9888),
                             Gender = "Kadın",
                             IsWorking = "Çalışıyor",
                             Name = "Ebru",
@@ -154,6 +154,10 @@ namespace Market_Otomasyonu.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"), 1L, 1);
 
+                    b.Property<string>("IsActive")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -166,46 +170,61 @@ namespace Market_Otomasyonu.Data.Migrations
                         new
                         {
                             CategoryID = 1,
-                            Name = "Su & İçecek"
+                            IsActive = "Pasif",
+                            Name = "Belirtilmemiş"
                         },
                         new
                         {
                             CategoryID = 2,
-                            Name = "Meyve & Sebze"
+                            IsActive = "Aktif",
+                            Name = "Su & İçecek"
                         },
                         new
                         {
                             CategoryID = 3,
-                            Name = "Fırın Ürünleri"
+                            IsActive = "Aktif",
+                            Name = "Meyve & Sebze"
                         },
                         new
                         {
                             CategoryID = 4,
-                            Name = "Temel Gıda"
+                            IsActive = "Aktif",
+                            Name = "Fırın Ürünleri"
                         },
                         new
                         {
                             CategoryID = 5,
-                            Name = "Süt Ürünleri"
+                            IsActive = "Aktif",
+                            Name = "Temel Gıda"
                         },
                         new
                         {
                             CategoryID = 6,
-                            Name = "Kahvaltılık"
+                            IsActive = "Aktif",
+                            Name = "Süt Ürünleri"
                         },
                         new
                         {
                             CategoryID = 7,
-                            Name = "Atıştırmalık"
+                            IsActive = "Aktif",
+                            Name = "Kahvaltılık"
                         },
                         new
                         {
                             CategoryID = 8,
-                            Name = "Kişisel Bakım"
+                            IsActive = "Aktif",
+                            Name = "Atıştırmalık"
                         },
                         new
                         {
                             CategoryID = 9,
+                            IsActive = "Aktif",
+                            Name = "Kişisel Bakım"
+                        },
+                        new
+                        {
+                            CategoryID = 10,
+                            IsActive = "Aktif",
                             Name = "Temizlik Malzemeleri"
                         });
                 });
@@ -302,7 +321,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 1,
                             Brand = "Erikli",
-                            CategoryID = 1,
+                            CategoryID = 2,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Su (500mL)",
@@ -318,7 +337,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 2,
                             Brand = "Erikli",
-                            CategoryID = 1,
+                            CategoryID = 2,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Su (1,5L)",
@@ -334,7 +353,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 3,
                             Brand = "Coca-Cola",
-                            CategoryID = 1,
+                            CategoryID = 2,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Kola (1L)",
@@ -350,7 +369,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 4,
                             Brand = "",
-                            CategoryID = 2,
+                            CategoryID = 3,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "İthal Muz",
@@ -366,7 +385,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 5,
                             Brand = "",
-                            CategoryID = 2,
+                            CategoryID = 3,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Salkım Domates",
@@ -382,7 +401,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 6,
                             Brand = "",
-                            CategoryID = 2,
+                            CategoryID = 3,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Kuru Soğan",
@@ -398,7 +417,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 7,
                             Brand = "",
-                            CategoryID = 3,
+                            CategoryID = 4,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Ekmek",
@@ -414,7 +433,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 8,
                             Brand = "",
-                            CategoryID = 3,
+                            CategoryID = 4,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Simit",
@@ -430,7 +449,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 9,
                             Brand = "",
-                            CategoryID = 3,
+                            CategoryID = 4,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Peynirli Poğaça",
@@ -446,7 +465,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 10,
                             Brand = "Yayla",
-                            CategoryID = 4,
+                            CategoryID = 5,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Pirinç (1kg)",
@@ -462,7 +481,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 11,
                             Brand = "Sinangil",
-                            CategoryID = 4,
+                            CategoryID = 5,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Un (1kg)",
@@ -478,7 +497,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 12,
                             Brand = "Komili",
-                            CategoryID = 4,
+                            CategoryID = 5,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Ayçiçek Yağı",
@@ -494,7 +513,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 13,
                             Brand = "İçim (1L)",
-                            CategoryID = 5,
+                            CategoryID = 6,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Süt",
@@ -510,7 +529,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 14,
                             Brand = "Tahsildaroğlu",
-                            CategoryID = 5,
+                            CategoryID = 6,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Beyaz Peynir (450g)",
@@ -526,7 +545,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 15,
                             Brand = "Pınar",
-                            CategoryID = 5,
+                            CategoryID = 6,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Yoğurt (750g)",
@@ -542,7 +561,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 16,
                             Brand = "CP",
-                            CategoryID = 6,
+                            CategoryID = 7,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Yumurta (10'lu)",
@@ -558,7 +577,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 17,
                             Brand = "Cumhuriyet",
-                            CategoryID = 6,
+                            CategoryID = 7,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Sucuk (220g)",
@@ -574,7 +593,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 18,
                             Brand = "Balparmak",
-                            CategoryID = 6,
+                            CategoryID = 7,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Bal (460g)",
@@ -590,7 +609,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 19,
                             Brand = "Lay's",
-                            CategoryID = 7,
+                            CategoryID = 8,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Lay's Klasik (107g)",
@@ -606,7 +625,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 20,
                             Brand = "Peyman",
-                            CategoryID = 7,
+                            CategoryID = 8,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Karışık Kuruyemiş (180g)",
@@ -622,7 +641,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 21,
                             Brand = "Ülker",
-                            CategoryID = 7,
+                            CategoryID = 8,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Çikolatalı Gofret",
@@ -638,7 +657,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 22,
                             Brand = "Signal",
-                            CategoryID = 8,
+                            CategoryID = 9,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Signal White Now Gold",
@@ -654,7 +673,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 23,
                             Brand = "Elidor",
-                            CategoryID = 8,
+                            CategoryID = 9,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Şampuan",
@@ -670,7 +689,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 24,
                             Brand = "Dove",
-                            CategoryID = 8,
+                            CategoryID = 9,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Sıvı El Sabunu",
@@ -686,7 +705,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 25,
                             Brand = "Domestos",
-                            CategoryID = 9,
+                            CategoryID = 10,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Domestos Dağ Esintisi",
@@ -702,7 +721,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 26,
                             Brand = "Solo",
-                            CategoryID = 9,
+                            CategoryID = 10,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Tuvalet Kağıdı (16'lı)",
@@ -718,7 +737,7 @@ namespace Market_Otomasyonu.Data.Migrations
                         {
                             ProductID = 27,
                             Brand = "Finish",
-                            CategoryID = 9,
+                            CategoryID = 10,
                             ExpirationDate = new DateTime(2025, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsContinued = "Satışa Açık",
                             Name = "Finish Quantum (40'lı)",
@@ -833,8 +852,7 @@ namespace Market_Otomasyonu.Data.Migrations
                     b.HasOne("Market_Otomasyonu.Entity.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Market_Otomasyonu.Entity.Entities.Market", null)
                         .WithMany("Products")

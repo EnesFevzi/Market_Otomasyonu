@@ -37,11 +37,11 @@ namespace Market_Otomasyonu.Data.Repository
 		}
 		public List<Product> GetAll()
 		{
-			return _context.Set<Product>().ToList();
+			return _context.Products.ToList();
 		}
 		public List<Product> GetAllProductWtihCategory()
 		{
-			return _context.Products.Include(x=>x.Category).ToList();
+			return _context.Products.Include(x => x.Category).ToList();
 		}
 
 		public Product GetByID(int id)
@@ -69,6 +69,20 @@ namespace Market_Otomasyonu.Data.Repository
 		{
 			var values = _context.Products.Find(id);
 			values.IsContinued = "Satışa Kapalı";
+			_context.SaveChanges();
+		}
+
+		public List<Product> GetProductListWithLess20Stock()
+		{
+			return _context.Products.Where(x=>x.Stock<=20).ToList();
+		}
+		public void ChangeProductCategoryToNull(int categoryId)
+		{
+			var productsToUpdate = _context.Products.Where(p => p.CategoryID == categoryId).ToList();
+			foreach (var product in productsToUpdate)
+			{
+				product.CategoryID = 1;
+			}
 			_context.SaveChanges();
 		}
 	}

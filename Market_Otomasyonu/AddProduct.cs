@@ -78,24 +78,28 @@ namespace Market_Otomasyonu
 				if (category != null)
 				{
 					lv.SubItems.Add(category.Name);
-				}
 
-				lv.SubItems.Add(item.Brand);
-				lv.SubItems.Add(item.Unit.ToString());
-				lv.SubItems.Add(item.SalePrice.ToString());
-				lv.SubItems.Add(item.PurchasePrice.ToString());
-				lv.SubItems.Add(item.TaxRatio.ToString());
-				lv.SubItems.Add(item.Quantity.ToString());
-				lv.SubItems.Add(item.Stock.ToString());
-				lv.SubItems.Add(item.ExpirationDate.ToString());
-				lv.SubItems.Add(item.IsContinued.ToString());
-				lstUrunler.Items.Add(lv);
-				lv.Tag = item;
+				}
+				
+					lv.SubItems.Add(item.Brand);
+					lv.SubItems.Add(item.Unit.ToString());
+					lv.SubItems.Add(item.SalePrice.ToString());
+					lv.SubItems.Add(item.PurchasePrice.ToString());
+					lv.SubItems.Add(item.TaxRatio.ToString());
+					lv.SubItems.Add(item.Quantity.ToString());
+					lv.SubItems.Add(item.Stock.ToString());
+					lv.SubItems.Add(item.ExpirationDate.ToString());
+					lv.SubItems.Add(item.IsContinued.ToString());
+					lstUrunler.Items.Add(lv);
+					lv.Tag = item;
+				
+
+				
 			}
 		}
 		private void AddCategoriesToCombobox()
 		{
-			var categories = _categoryService.GetAllCategory();
+			var categories = _categoryService.GetCategoryWithCategoryActive();
 
 			foreach (var item in categories)
 			{
@@ -210,6 +214,11 @@ namespace Market_Otomasyonu
 			GetAllProducts();
 			MessageBox.Show("Ürün Durumu Satýþa Kapalý Olarak Atandý...");
 			Helper.Clean(grpUrunEkle.Controls);
+		}
+
+		private void txtUrunAdi_TextChanged(object sender, EventArgs e)
+		{
+			EnableButton();
 		}
 	}
 }

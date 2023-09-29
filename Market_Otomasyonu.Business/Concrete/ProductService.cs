@@ -1,6 +1,7 @@
 ﻿using Market_Otomasyonu.Business.Abstract;
 using Market_Otomasyonu.Data.Repository;
 using Market_Otomasyonu.Entity.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,19 @@ namespace Market_Otomasyonu.Business.Concrete
 			return _productRepository.GetByID(id);
 		}
 
+		public bool BoolProductListWithLess20Stock()
+		{
+			var product= _productRepository.GetProductListWithLess20Stock();
+			if (product == null)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
 		public void ProductStatusChangeCloseSale(int id)
 		{
 			_productRepository.ProductStatusChangeCloseSale(id);
@@ -73,5 +87,14 @@ namespace Market_Otomasyonu.Business.Concrete
 			_productRepository.Update(product);
 		}
 
+		public List<Product> GetProductListWithLess20Stock()
+		{
+			return _productRepository.GetProductListWithLess20Stock();
+		}
+
+		public void ChangeProductCategoryToNull(int categoryId)
+		{
+			_productRepository.ChangeProductCategoryToNull(categoryId);
+		}
 	}
 }

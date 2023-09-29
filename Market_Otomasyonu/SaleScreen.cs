@@ -239,6 +239,7 @@ namespace Market_Otomasyonu.UI
 				lv.Text = item.Name;
 				lv.SubItems.Add(item.Brand);
 				lv.SubItems.Add(item.Unit.ToString());
+				lv.SubItems.Add(item.Stock.ToString());
 				lv.SubItems.Add(item.PurchasePrice.ToString());
 				lv.Tag = item;
 				lstArananUrunler.Items.Add(lv);
